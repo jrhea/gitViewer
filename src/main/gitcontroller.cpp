@@ -16,6 +16,7 @@
 //custom
 #include "gitcontroller.h"
 
+
 GitController::GitController(QObject *parent) : QObject(parent)
 {
 
@@ -33,18 +34,6 @@ GitController::GitController(QQmlApplicationEngine *engine, QObject *parent) :Gi
     _branchModel = new BranchModel();
     _commitModel = new CommitModel();
 
-//    _sortFilterProxyModel = new SortFilterProxyModel();
-
-//    _sortFilterProxyModel->setSortOrder(Qt::DescendingOrder);  //TODO:: Needs to be tied to qml
-//    _sortFilterProxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
-//    _sortFilterProxyModel->setSortRole(_commitModel->roleNames()[CommitModel::Role::Date]);
-
-//    _sortFilterProxyModel->setFilterRole(_commitModel->roleNames()[CommitModel::Role::Author]);
-//    _sortFilterProxyModel->setFilterRegExp( "*" );  //TODO: Needs to be tied to search box "*" + searchBox.text +"*"
-//    _sortFilterProxyModel->setFilterSyntax(_sortFilterProxyModel->Wildcard);
-//    _sortFilterProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-//    _sortFilterProxyModel->setSourceModel(_commitModel);
-
     connect(this,SIGNAL(repositoryChanged()),
             this,SLOT(loadBranchModel()));
     connect(this,SIGNAL(branchChanged()),
@@ -57,7 +46,6 @@ GitController::~GitController()
     delete _fileSystemModel;
     delete _branchModel;
     delete _commitModel;
-    //delete _sortFilterProxyModel;
 }
 
 QFileSystemModel* GitController::getFileSystemModel() const
@@ -105,28 +93,30 @@ void GitController::loadRepository(const QModelIndex &index)
 
 void GitController::loadBranchModel()
 {
-    QStringList branchNames;
-    QStringList branchIds;
-    Git::BranchRef branchRef;
     Git::Result r;
+    QStringList branchNames;
+    QStandardItem *it = NULL;
+    _branch = _repository.headBranchName(r);
 
-    //index id->name
-    branchNames = _repository.branchNames(r,true,true);
-
-    for(int i=0;i<branchNames.count();i++)
+    if(r)
     {
-        branchRef = _repository.branchRef(r,branchNames.at(i));
-        //index name->id
-        branchIds.append(branchRef.objectId().toString());
-
-
-        //qDebug()<<"Branch Name: "<<branches.at(i)<<" Branch ObjectId: "<<repo.branchRef(r,branches.at(i)).objectId();
+        it = new QStandardItem();
+        it->setData(_branch,BranchModel::Name);
+        _branchModel->setItem(0,0,it);
     }
 
-    _branchModel->loadModel(branchNames,branchIds);
-    _engine->rootContext()->setContextProperty("branchModel",_branchModel);
-    _branch = "master";
-    emit branchChanged();
+    branchNames = _repository.branchNames(r,true,true);  //TODO: local & remote need to be set from QML
+    if(r)
+    {
+        for(int i=1;i<branchNames.count();i++)
+        {
+            it = new QStandardItem();
+            it->setData(branchNames.at(i), BranchModel::Name);
+            _branchModel->setItem(i,0,it);
+        }
+        _engine->rootContext()->setContextProperty("branchModel",_branchModel);
+        emit branchChanged();
+    }
 }
 
 void GitController::setBranch(const QString &branch)
@@ -143,7 +133,7 @@ void GitController::setBranch(const QString &branch)
 void GitController::loadCommitModel()
 {
      Git::Result r;
-     Git::ObjectId oid = _repository.branchRef(r,"master").objectId();
+     Git::ObjectId oid = _repository.branchRef(r,_branch).objectId();
      Git::RevisionWalker walker;
      walker = Git::RevisionWalker::create(r,_repository);
      _commitModel->clear();
@@ -168,7 +158,7 @@ void GitController::loadCommitModel()
          {
              commit = _repository.lookupCommit(r,oid);
 
-
+             qDebug()<<"row count: "<<_commitModel->rowCount()<<"\n";
              it = new QStandardItem();
              it->setData(commit.shortMessage(), CommitModel::Message);
              it->setData(commit.author().name(), CommitModel::Author);
@@ -276,6 +266,14 @@ bool GitController::isAncestor(Git::Commit &commit,Git::Commit &currentCommit)
     }
     return result;
 }
+
+
+void GitController::interceptSort(QModelIndex one, int two, int three, QModelIndex four, int five)
+{
+    int goo = 1;
+    goo=3;
+}
+
 
 
 

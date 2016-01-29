@@ -41,88 +41,221 @@
 import QtQuick 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
+import QtQuick.Extras 1.4
+import QtQuick.Controls.Styles 1.4
 
 ScrollView {
     id: page
     implicitWidth: 640
-    implicitHeight: 200
+    implicitHeight: 400
 
     horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
 
     Item {
         id: content
 
-        width: Math.max(page.viewport.width, grid.implicitWidth + 2 * grid.rowSpacing)
-        height: Math.max(page.viewport.height, grid.implicitHeight + 2 * grid.columnSpacing)
+        width: Math.max(page.viewport.width, column.implicitWidth + 2 * column.spacing)
+        height: Math.max(page.viewport.height, column.implicitHeight + 2 * column.spacing)
 
-        GridLayout {
-            id: grid
+        ColumnLayout {
+            id: column
+            anchors.fill: parent
 
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.leftMargin: grid.rowSpacing
-            anchors.rightMargin: grid.rowSpacing
-            anchors.topMargin: grid.columnSpacing
+            anchors.margins: column.spacing
 
-            columns: page.width < page.height ? 1 : 2
+
 
             GroupBox {
-                title: "Button"
+                checked: true
+                flat: false
+                Layout.fillHeight: true
+                title: ""
                 Layout.fillWidth: true
-                Layout.columnSpan: grid.columns
-                RowLayout {
+                ColumnLayout {
+                    anchors.rightMargin: 0
+                    anchors.bottomMargin: 0
+                    anchors.leftMargin: 0
+                    anchors.topMargin: 0
                     anchors.fill: parent
-                    Button { text: "OK"; isDefault: true }
-                    Button { text: "Cancel" }
-                    Item { Layout.fillWidth: true }
-                    Button {
-                        text: "Attach"
-                        menu: Menu {
-                            MenuItem { text: "Image" }
-                            MenuItem { text: "Document" }
+
+
+
+
+
+
+                    GridLayout {
+                        id: gridLayout1
+                        width: 100
+                        height: 100
+                        Layout.maximumWidth: 65533
+                        rows: 2
+                        columns: 3
+
+
+
+
+                        Label {
+                            id: label2
+                            text: qsTr("Author")
                         }
-                    }
-                }
-            }
 
-            GroupBox {
-                title: "CheckBox"
-                Layout.fillWidth: true
-                ColumnLayout {
-                    anchors.fill: parent
-                    CheckBox { text: "E-mail"; checked: true }
-                    CheckBox { text: "Calendar"; checked: true }
-                    CheckBox { text: "Contacts" }
-                }
-            }
 
-            GroupBox {
-                title: "RadioButton"
-                Layout.fillWidth: true
-                ColumnLayout {
-                    anchors.fill: parent
-                    ExclusiveGroup { id: radioGroup }
-                    RadioButton { text: "Portrait"; exclusiveGroup: radioGroup }
-                    RadioButton { text: "Landscape"; exclusiveGroup: radioGroup }
-                    RadioButton { text: "Automatic"; exclusiveGroup: radioGroup; checked: true }
-                }
-            }
 
-            GroupBox {
-                title: "Switch"
-                Layout.fillWidth: true
-                Layout.columnSpan: grid.columns
-                ColumnLayout {
-                    anchors.fill: parent
-                    RowLayout {
-                        Label { text: "Wi-Fi"; Layout.fillWidth: true }
-                        Switch { checked: true }
+
+
+
+
+
+
+                        Label {
+                            id: label4
+                            text: qsTr("Email")
+                        }
+
+                        Label {
+                            id: label3
+                            text: qsTr("Date")
+                        }
+
+
+                        TextField {
+                            id: authorTextField
+                            Layout.fillWidth: true
+                            readOnly: true
+                            placeholderText: qsTr("")
+//                            style: TextFieldStyle {
+//                                textColor: "black"
+//                                background: Rectangle {
+//                                    color:"white"
+//                                    radius: 2
+//                                    implicitWidth: 100
+//                                    implicitHeight: 24
+//                                    border.color: "silver"
+//                                    border.width: 1
+//                                }
+//                            }
+                        }
+
+                        TextField {
+                            id: emailTextField
+                            readOnly: true
+                            Layout.fillWidth: true
+                            placeholderText: qsTr("")
+//                            style: TextFieldStyle {
+//                                textColor: "black"
+//                                background: Rectangle {
+//                                    color:"white"
+//                                    radius: 2
+//                                    implicitWidth: 100
+//                                    implicitHeight: 24
+//                                    border.color: "silver"
+//                                    border.width: 1
+//                                }
+//                            }
+                        }
+
+                        TextField {
+                            id: dateTextField
+                            text: ""
+                            Layout.fillWidth: false
+                            readOnly: true
+                            inputMask: "00-00-0000"
+                            placeholderText: qsTr("")
+//                            style: TextFieldStyle {
+//                                textColor: "black"
+//                                background: Rectangle {
+//                                    color:"white"
+//                                    radius: 2
+//                                    implicitWidth: 100
+//                                    implicitHeight: 24
+//                                    border.color: "silver"
+//                                    border.width: 1
+//                                }
+//                            }
+                        }
+
+
+
+
+
+
                     }
-                    RowLayout {
-                        Label { text: "Bluetooth"; Layout.fillWidth: true }
-                        Switch { checked: false }
+
+
+
+
+
+
+
+
+                    Label {
+                        id: label5
+                        text: qsTr("Commit ID")
                     }
+
+                    TextField {
+                        id: commitIdTextField
+                        readOnly: true
+                        Layout.fillWidth: true
+                        placeholderText: qsTr("")
+//                        style: TextFieldStyle {
+//                            textColor: "black"
+//                            background: Rectangle {
+//                                color:"white"
+//                                radius: 2
+//                                implicitWidth: 100
+//                                implicitHeight: 24
+//                                border.color: "silver"
+//                                border.width: 1
+//                            }
+//                        }
+
+                    }
+
+
+                    Label {
+                        id: label1
+                        text: qsTr("Commit Message")
+                        font.bold: false
+                        verticalAlignment: Text.AlignTop
+                    }
+
+
+                    TextField {
+                        id: commitMessageTextField
+                        x: 129
+                        y: 16
+                        Layout.minimumHeight: 150
+                        Layout.maximumHeight: 250
+                        antialiasing: true
+                        readOnly: true
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                        placeholderText: qsTr("")
+//                        style: TextFieldStyle {
+//                            textColor: "black"
+//                            background: Rectangle {
+//                                color:"white"
+//                                radius: 2
+//                                implicitWidth: 100
+//                                implicitHeight: 24
+//                                border.color: "silver"
+//                                border.width: 1
+//                            }
+//                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+
                 }
             }
         }

@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qml/Detail.qml</file>
-        <file>qml/Visualization.qml</file>
+        <file>qml/Options.qml</file>
     </qresource>
     <qresource prefix="/src/main">
         <file alias="index.html">src/main/index.html</file>

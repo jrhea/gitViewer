@@ -2,29 +2,17 @@
 #define GITBRANCHMODEL_H
 
 #include <QObject>
-#include <QStringList>
-#include <QStringListModel>
+#include <QStandardItemModel>
 
-class BranchModel : public QStringListModel
+class BranchModel : public QStandardItemModel
 {
-    Q_OBJECT
 public:
+    enum Role {
+        Name=Qt::UserRole,
+    };
     explicit BranchModel(QObject *parent = 0);
-    ~BranchModel();
-    void loadModel(QStringList,QStringList);
-    QStringList getNames();
-    QStringList getIds();
-    QString idToName(QString);
-    QString nameToId(QString);
-signals:
-
-public slots:
-    QString getBranch(int index) const;
-
-private:
-    QHash<QString,QString> *_nameToId;
-    QHash<QString,QString> *_idToName;
-    QStringList *_ids;
+    explicit BranchModel( int rows, int columns, QObject * parent = 0 );
+    QHash<int, QByteArray> roleNames() const;
 };
 
 #endif // GITBRANCHMODEL_H

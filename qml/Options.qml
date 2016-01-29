@@ -45,70 +45,84 @@ import QtQuick.Controls 1.2
 ScrollView {
     id: page
     implicitWidth: 640
-    implicitHeight: 400
+    implicitHeight: 200
 
     horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
 
     Item {
         id: content
 
-        width: Math.max(page.viewport.width, column.implicitWidth + 2 * column.spacing)
-        height: Math.max(page.viewport.height, column.implicitHeight + 2 * column.spacing)
+        width: Math.max(page.viewport.width, grid.implicitWidth + 2 * grid.rowSpacing)
+        height: Math.max(page.viewport.height, grid.implicitHeight + 2 * grid.columnSpacing)
 
-        ColumnLayout {
-            id: column
+        GridLayout {
+            id: grid
 
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.margins: column.spacing
+            anchors.leftMargin: grid.rowSpacing
+            anchors.rightMargin: grid.rowSpacing
+            anchors.topMargin: grid.columnSpacing
+
+            columns: page.width < page.height ? 1 : 2
 
             GroupBox {
-                title: "TextField"
+                title: "Button"
                 Layout.fillWidth: true
-                ColumnLayout {
+                Layout.columnSpan: grid.columns
+                RowLayout {
                     anchors.fill: parent
-                    TextField { placeholderText: "..."; Layout.fillWidth: true; z: 1 }
-                    TextField { placeholderText: "Password"; echoMode: TextInput.Password; Layout.fillWidth: true }
-                }
-            }
-
-            GroupBox {
-                title: "ComboBox"
-                Layout.fillWidth: true
-                ColumnLayout {
-                    anchors.fill: parent
-                    ComboBox {
-                        model: Qt.fontFamilies()
-                        Layout.fillWidth: true
-                    }
-                    ComboBox {
-                        editable: true
-                        model: ListModel {
-                            id: listModel
-                            ListElement { text: "Apple" }
-                            ListElement { text: "Banana" }
-                            ListElement { text: "Coconut" }
-                            ListElement { text: "Orange" }
+                    Button { text: "OK"; isDefault: true }
+                    Button { text: "Cancel" }
+                    Item { Layout.fillWidth: true }
+                    Button {
+                        text: "Attach"
+                        menu: Menu {
+                            MenuItem { text: "Image" }
+                            MenuItem { text: "Document" }
                         }
-                        onAccepted: {
-                            if (find(currentText) === -1) {
-                                listModel.append({text: editText})
-                                currentIndex = find(editText)
-                            }
-                        }
-                        Layout.fillWidth: true
                     }
                 }
             }
 
             GroupBox {
-                title: "SpinBox"
+                title: "CheckBox"
                 Layout.fillWidth: true
                 ColumnLayout {
                     anchors.fill: parent
-                    SpinBox { value: 99; Layout.fillWidth: true; z: 1 }
-                    SpinBox { decimals: 2; Layout.fillWidth: true }
+                    CheckBox { text: "E-mail"; checked: true }
+                    CheckBox { text: "Calendar"; checked: true }
+                    CheckBox { text: "Contacts" }
+                }
+            }
+
+            GroupBox {
+                title: "RadioButton"
+                Layout.fillWidth: true
+                ColumnLayout {
+                    anchors.fill: parent
+                    ExclusiveGroup { id: radioGroup }
+                    RadioButton { text: "Portrait"; exclusiveGroup: radioGroup }
+                    RadioButton { text: "Landscape"; exclusiveGroup: radioGroup }
+                    RadioButton { text: "Automatic"; exclusiveGroup: radioGroup; checked: true }
+                }
+            }
+
+            GroupBox {
+                title: "Switch"
+                Layout.fillWidth: true
+                Layout.columnSpan: grid.columns
+                ColumnLayout {
+                    anchors.fill: parent
+                    RowLayout {
+                        Label { text: "Wi-Fi"; Layout.fillWidth: true }
+                        Switch { checked: true }
+                    }
+                    RowLayout {
+                        Label { text: "Bluetooth"; Layout.fillWidth: true }
+                        Switch { checked: false }
+                    }
                 }
             }
         }

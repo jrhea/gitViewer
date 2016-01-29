@@ -39,6 +39,7 @@ public slots:
     void loadBranchModel();
     void loadCommitModel();
     QVariant loadCommitVisualization();
+    void interceptSort(QModelIndex one, int two, int three, QModelIndex four, int five);
 
 protected:
     bool isAncestor(Git::Commit &commit,Git::Commit &currentCommit);
@@ -49,7 +50,6 @@ private:
     QFileSystemModel *_fileSystemModel;
     BranchModel *_branchModel;
     CommitModel *_commitModel;
-    //SortFilterProxyModel *_sortFilterProxyModel;
     QString _selectedPath;
     QString _branch;
     QString _commitVis;

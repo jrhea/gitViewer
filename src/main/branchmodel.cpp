@@ -1,53 +1,19 @@
 #include "branchmodel.h"
 
-BranchModel::BranchModel(QObject *parent) : QStringListModel(parent)
+BranchModel::BranchModel(QObject *parent) : QStandardItemModel(parent)
 {
-    _nameToId = new QHash<QString,QString>();
-    _idToName = new QHash<QString,QString>();
-    _ids = new QStringList();
 }
 
-BranchModel::~BranchModel()
+BranchModel::BranchModel( int rows, int columns, QObject * parent): QStandardItemModel(rows, columns, parent)
 {
-    delete _nameToId;
-    delete _idToName;
-    delete _ids;
 }
 
-void BranchModel::loadModel(QStringList names, QStringList ids)
+QHash<int, QByteArray> BranchModel::roleNames() const
 {
-    _nameToId->clear();
-    _idToName->clear();
-    this->setStringList(names);
-    for(int i=0;i<names.count();i++)
-    {
-        _nameToId->insert(names.at(i),ids.at(i));
-        _idToName->insert(ids.at(i),names.at(i));
-    }
+    QHash<int, QByteArray> roles;
+    roles[Name] = "name";
+
+    return roles;
 }
 
-QStringList BranchModel::getNames()
-{
-    return this->stringList();
-}
-
-QStringList BranchModel::getIds()
-{
-    return *this->_ids;
-}
-
-QString BranchModel::idToName(QString id)
-{
-    return _idToName->value(id,"");
-}
-
-QString BranchModel::nameToId(QString name)
-{
-    return _nameToId->value(name,"");
-}
-
-QString BranchModel::getBranch(int index) const
-{
-    return this->stringList().at(index);
-}
 
