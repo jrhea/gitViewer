@@ -38,33 +38,36 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+//This file was taken from one of the QT examples and modified heavily (keeping the above comments to comply with license)
+import QtQuick 2.5
+import QtQuick.Controls 1.4
+import QtQml.Models 2.2
+import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.2
-import QtQuick.Extras 1.4
 import QtQuick.Controls.Styles 1.4
+import QtWebKit 3.0
+import QtQuick.Extras 1.4
 
 ScrollView {
-    id: page
-    implicitWidth: 640
-    implicitHeight: 400
+    id: root
+    property Item authorField: authorTextField
+    property Item emailField: emailTextField
+    property Item dateField: dateTextField
+    property Item commitIdField: commitIdTextField
+    property Item commitMessageField: commitMessageTextField
+
 
     horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
 
     Item {
         id: content
-
-        width: Math.max(page.viewport.width, column.implicitWidth + 2 * column.spacing)
-        height: Math.max(page.viewport.height, column.implicitHeight + 2 * column.spacing)
+        width: Math.max(root.viewport.width, column.implicitWidth + 2 * column.spacing)
+        height: Math.max(root.viewport.height, column.implicitHeight + 2 * column.spacing)
 
         ColumnLayout {
             id: column
             anchors.fill: parent
-
             anchors.margins: column.spacing
-
-
-
             GroupBox {
                 checked: true
                 flat: false
@@ -77,12 +80,6 @@ ScrollView {
                     anchors.leftMargin: 0
                     anchors.topMargin: 0
                     anchors.fill: parent
-
-
-
-
-
-
                     GridLayout {
                         id: gridLayout1
                         width: 100
@@ -91,21 +88,10 @@ ScrollView {
                         rows: 2
                         columns: 3
 
-
-
-
                         Label {
                             id: label2
                             text: qsTr("Author")
                         }
-
-
-
-
-
-
-
-
 
                         Label {
                             id: label4
@@ -117,41 +103,20 @@ ScrollView {
                             text: qsTr("Date")
                         }
 
-
                         TextField {
                             id: authorTextField
+                            text: ""
                             Layout.fillWidth: true
                             readOnly: true
                             placeholderText: qsTr("")
-//                            style: TextFieldStyle {
-//                                textColor: "black"
-//                                background: Rectangle {
-//                                    color:"white"
-//                                    radius: 2
-//                                    implicitWidth: 100
-//                                    implicitHeight: 24
-//                                    border.color: "silver"
-//                                    border.width: 1
-//                                }
-//                            }
                         }
 
                         TextField {
                             id: emailTextField
+                            text: ""
                             readOnly: true
                             Layout.fillWidth: true
                             placeholderText: qsTr("")
-//                            style: TextFieldStyle {
-//                                textColor: "black"
-//                                background: Rectangle {
-//                                    color:"white"
-//                                    radius: 2
-//                                    implicitWidth: 100
-//                                    implicitHeight: 24
-//                                    border.color: "silver"
-//                                    border.width: 1
-//                                }
-//                            }
                         }
 
                         TextField {
@@ -161,32 +126,9 @@ ScrollView {
                             readOnly: true
                             inputMask: "00-00-0000"
                             placeholderText: qsTr("")
-//                            style: TextFieldStyle {
-//                                textColor: "black"
-//                                background: Rectangle {
-//                                    color:"white"
-//                                    radius: 2
-//                                    implicitWidth: 100
-//                                    implicitHeight: 24
-//                                    border.color: "silver"
-//                                    border.width: 1
-//                                }
-//                            }
                         }
 
-
-
-
-
-
                     }
-
-
-
-
-
-
-
 
                     Label {
                         id: label5
@@ -195,21 +137,10 @@ ScrollView {
 
                     TextField {
                         id: commitIdTextField
+                        text: ""
                         readOnly: true
                         Layout.fillWidth: true
                         placeholderText: qsTr("")
-//                        style: TextFieldStyle {
-//                            textColor: "black"
-//                            background: Rectangle {
-//                                color:"white"
-//                                radius: 2
-//                                implicitWidth: 100
-//                                implicitHeight: 24
-//                                border.color: "silver"
-//                                border.width: 1
-//                            }
-//                        }
-
                     }
 
 
@@ -223,6 +154,8 @@ ScrollView {
 
                     TextField {
                         id: commitMessageTextField
+                        text: ""
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                         x: 129
                         y: 16
                         Layout.minimumHeight: 150
@@ -231,33 +164,12 @@ ScrollView {
                         readOnly: true
                         Layout.fillHeight: true
                         Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                         placeholderText: qsTr("")
-//                        style: TextFieldStyle {
-//                            textColor: "black"
-//                            background: Rectangle {
-//                                color:"white"
-//                                radius: 2
-//                                implicitWidth: 100
-//                                implicitHeight: 24
-//                                border.color: "silver"
-//                                border.width: 1
-//                            }
-//                        }
+
                     }
-
-
-
-
-
-
-
-
-
-
-
                 }
             }
         }
     }
 }
+

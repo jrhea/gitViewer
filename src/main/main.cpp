@@ -21,8 +21,6 @@
 
 int main(int argc, char *argv[])
 {
-    //qputenv("QT_QUICK_CONTROLS_STYLE", "Flat");
-    //QGuiApplication app(argc, argv);
     QtQuickControlsApplication app(argc, argv);
     QQmlApplicationEngine engine;
     if (QCoreApplication::arguments().contains(QLatin1String("--coreprofile"))) {
@@ -39,10 +37,9 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("gitController", gitController);
     engine.rootContext()->setContextProperty("fileSystemModel", gitController->getFileSystemModel());
     engine.rootContext()->setContextProperty("commitModel",gitController->getCommitModel());
-    //QQmlEngine::addImportPath("src/include");
     engine.addImportPath("src/include");
     qmlRegisterType<SortFilterProxyModel>("sortfilterproxymodel",1,0,"SortFilterProxyModel");
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/mainView.qml")));
     return app.exec();
 }

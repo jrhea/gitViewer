@@ -1,8 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>mainView.qml</file>
         <file>qml/Detail.qml</file>
         <file>qml/Options.qml</file>
+        <file>qml/BranchView.qml</file>
+        <file>qml/CommitView.qml</file>
+        <file>qml/FileSystemView.qml</file>
     </qresource>
     <qresource prefix="/src/main">
         <file alias="index.html">src/main/index.html</file>
