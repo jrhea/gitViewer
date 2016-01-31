@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
         fmt.setProfile(QSurfaceFormat::CoreProfile);
         QSurfaceFormat::setDefaultFormat(fmt);
     }
-
+    qRegisterMetaType<CommitModel>();
+    qRegisterMetaType<BranchModel>();
     //qmlRegisterType<GitController>("Git",0,1,"GitController");
 
 

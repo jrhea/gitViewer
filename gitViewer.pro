@@ -8,7 +8,8 @@ SOURCES += src/main/main.cpp \
     src/main/gitcontroller.cpp \
     src/main/commitmodel.cpp \
     src/main/sortfilterproxymodel.cpp \
-    src/main/filesystemmodel.cpp
+    src/main/filesystemmodel.cpp \
+    src/main/gitadapter.cpp
 
 RESOURCES += qml.qrc
 
@@ -28,7 +29,8 @@ HEADERS += \
     src/include/gitcontroller.h \
     src/include/commitmodel.h \
     src/include/sortfilterproxymodel.h \
-    src/include/filesystemmodel.h
+    src/include/filesystemmodel.h \
+    src/include/gitadapter.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/3rd-Party/libGitWrap/build/libGitWrap/release/ -lGitWrap.0.0.20
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/3rd-Party/libGitWrap/build/libGitWrap/debug/ -lGitWrap.0.0.20

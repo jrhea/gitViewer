@@ -28,7 +28,7 @@ ApplicationWindow {
             height: parent.height
             model: fileSystemModel
             onDirectorySelected: {
-                gitController.path = fileSystemModel.getPath(index);
+                fileSystemModel.index = index;
             }
         }
 
@@ -70,7 +70,7 @@ ApplicationWindow {
 
         BranchView {
             id: branchViewToolBar
-            model: branchModel
+            model: ListModel{}
             anchors.top: parent.bottom
             anchors.topMargin: -30
             anchors.left: fileSystem.right
