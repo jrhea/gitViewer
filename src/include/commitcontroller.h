@@ -23,6 +23,7 @@ signals:
     void modelChanged();
 
 public slots:
+    void resetModel();
     void loadModel(const QString &branch);
     void updateCommitView();
     QString getCommit(int row,QString role);
@@ -34,7 +35,6 @@ private:
     QQmlApplicationEngine *_engine;
     GitAdapter *_adapter;
     CommitModel *_commitModel = NULL;
-    QString _branch;
 
 };
 #endif // COMMITCONTROLLER_H

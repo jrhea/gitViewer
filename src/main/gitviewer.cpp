@@ -27,6 +27,12 @@ GitViewer::GitViewer(QQmlApplicationEngine *engine, QObject *parent): QObject(pa
     connect(_fileSystemModel,SIGNAL(pathChanged(const QString &)),
             _adapter,SLOT(openRepository(const QString &)));
 
+    connect(_adapter,SIGNAL(invalidRepository()),
+            _branchController,SLOT(resetModel()));
+
+    connect(_adapter,SIGNAL(invalidRepository()),
+            _commitController,SLOT(resetModel()));
+
     connect(_adapter,SIGNAL(repositoryChanged()),
             _branchController,SLOT(loadModel()));
 

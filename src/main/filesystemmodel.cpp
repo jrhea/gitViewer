@@ -10,6 +10,7 @@ QModelIndex FileSystemModel::pathIndex() const
     return _index;
 }
 
+
 void FileSystemModel::setPathIndex(const QModelIndex &index)
 {
     if(index != _index)

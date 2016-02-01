@@ -28,6 +28,12 @@ CommitModel *CommitController::getCommitModel() const
     return _commitModel;
 }
 
+void CommitController::resetModel()
+{
+    _commitModel->clear();
+     emit this->modelChanged();
+}
+
 void CommitController::loadModel(const QString &branch)
 {
     _commitModel->clear();

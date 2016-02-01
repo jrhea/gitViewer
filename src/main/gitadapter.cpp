@@ -24,6 +24,7 @@ void GitAdapter::openRepository(const QString &path)
         qCritical( "Unable to open repository at %s."
                        "\nGit error: %s",
                        qPrintable( path ), qPrintable( r.errorText() ) );
+        emit invalidRepository();
     }
     else
     {

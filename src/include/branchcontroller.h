@@ -29,6 +29,7 @@ signals:
     void modelChanged();
 
 public slots:
+    void resetModel();
     void loadModel();
     void updateBranchView();
 

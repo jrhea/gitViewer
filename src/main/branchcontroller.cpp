@@ -39,9 +39,17 @@ void BranchController::setBranch(const QString &branch)
         }
 }
 
+void BranchController::resetModel()
+{
+     _branchModel->clear();
+     _branch = "";
+     emit this->modelChanged();
+}
+
 void BranchController::loadModel()
 {
     _branchModel->clear();
+    _branch="";
     QStandardItem *it = NULL;
     QString branchName = _adapter->getHeadBranchName();
     QStringList branchNames = _adapter->getBranchNames(true, false);

@@ -24,6 +24,7 @@ public:
 
 signals:
     void repositoryChanged();
+    void invalidRepository();
 public slots:
     void openRepository(const QString &path);
 
