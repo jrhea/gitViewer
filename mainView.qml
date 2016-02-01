@@ -28,7 +28,7 @@ ApplicationWindow {
             height: parent.height
             model: fileSystemModel
             onDirectorySelected: {
-                fileSystemModel.index = index;
+                fileSystemModel.pathIndex = index;
             }
         }
 
@@ -42,29 +42,44 @@ ApplicationWindow {
             anchors.rightMargin: 0
             anchors.bottom: branchViewToolBar.top
             anchors.bottomMargin: 0
+
             // @disable-check M300
             model: SortFilterProxyModel
             {
                 id: proxyModel
                 source: model.count > 0 ? model : null
             }
+
             onRefresh:
             {
+                proxyModel.clear()
                 proxyModel.source = commitModel
-                detail.refresh(-1)
+                detailtab.refresh(-1)
             }
+
+            onSearch:
+            {
+                proxyModel.filterRole = searchRole
+                proxyModel.filterSyntax= searchType < 0 ? SortFilterProxyModel.Wildcard : SortFilterProxyModel.FixedString
+                proxyModel.customFilterSyntax=1
+                proxyModel.filterCaseSensitivity= Qt.CaseSensitive
+                proxyModel.customFilterString= searchText
+                proxyModel.filterString= searchText
+            }
+
             onSort:
             {
                 proxyModel.sortRole = sortRole
                 proxyModel.sortOrder = sortOrder
                 proxyModel.sortCaseSensitivity = Qt.CaseInsensitive
             }
+
             onFilter:
             {
                 proxyModel.filterRole= filterRole;
-                proxyModel.filterString= "*" + filterText + "*"
                 proxyModel.filterSyntax= SortFilterProxyModel.Wildcard
                 proxyModel.filterCaseSensitivity= Qt.CaseInsensitive
+                proxyModel.filterString= "*" + filterText + "*"
             }
         }
 

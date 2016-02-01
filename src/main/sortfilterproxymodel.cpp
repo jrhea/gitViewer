@@ -106,6 +106,19 @@ void SortFilterProxyModel::setFilterString(const QString &filter)
     setFilterRegExp(QRegExp(filter, filterCaseSensitivity(), static_cast<QRegExp::PatternSyntax>(filterSyntax())));
 }
 
+QString SortFilterProxyModel::customFilterString() const
+{
+    return _customFilterString;
+}
+
+void SortFilterProxyModel::setCustomFilterString(const QString &filter)
+{
+    if(_customFilterString!= filter)
+    {
+        _customFilterString = filter;
+    }
+}
+
 SortFilterProxyModel::FilterSyntax SortFilterProxyModel::filterSyntax() const
 {
     return static_cast<FilterSyntax>(filterRegExp().patternSyntax());
@@ -114,6 +127,19 @@ SortFilterProxyModel::FilterSyntax SortFilterProxyModel::filterSyntax() const
 void SortFilterProxyModel::setFilterSyntax(SortFilterProxyModel::FilterSyntax syntax)
 {
     setFilterRegExp(QRegExp(filterString(), filterCaseSensitivity(), static_cast<QRegExp::PatternSyntax>(syntax)));
+}
+
+int SortFilterProxyModel::customFilterSyntax() const
+{
+    return _customFilterSyntax;
+}
+
+void SortFilterProxyModel::setCustomFilterSyntax(int syntax)
+{
+    if(_customFilterSyntax != syntax)
+    {
+        _customFilterSyntax = syntax;
+    }
 }
 
 QJSValue SortFilterProxyModel::get(int idx) const
@@ -165,6 +191,21 @@ QHash<int, QByteArray> SortFilterProxyModel::roleNames() const
 
 bool SortFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
+    bool result = true;
+    if(_customFilterSyntax == 0)
+    {
+        result = isFiltered(sourceRow,sourceParent);
+    }
+    else if(_customFilterSyntax == 1)
+    {
+        result = isInDateRange(sourceRow,sourceParent);
+    }
+    return result;
+}
+
+bool SortFilterProxyModel::isFiltered(int sourceRow, const QModelIndex &sourceParent) const
+{
+    bool result = true;
     QRegExp rx = filterRegExp();
     if (rx.isEmpty())
         return true;
@@ -185,5 +226,31 @@ bool SortFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &so
     if (!sourceIndex.isValid())
         return true;
     QString key = model->data(sourceIndex, roleKey(filterRole())).toString();
-    return key.contains(rx);
+    result = key.contains(rx);
+    return result;
+}
+
+bool SortFilterProxyModel::isInDateRange(int sourceRow, const QModelIndex &sourceParent) const
+{
+    bool result = true;
+    QStringList values = _customFilterString.split(QString(":"));
+    QDateTime val1 = QDateTime::fromString(values.at(0),"MM-dd-yyyy");
+    QDateTime val2 = QDateTime::fromString(values.at(1),"MM-dd-yyyy");
+    QAbstractItemModel *model = sourceModel();
+    //This is very inefficient
+    QHash<int, QByteArray> roles = roleNames();
+    QHashIterator<int, QByteArray> it(roles);
+    while (it.hasNext()) {
+        it.next();
+        QModelIndex sourceIndex = model->index(sourceRow, 0, sourceParent);
+        QString key = model->data(sourceIndex, it.key()).toString();
+        QDateTime source = QDateTime::fromString(key,"MM-dd-yyyy hh:mm ap");
+        if(source.daysTo(val1) < 0 && source.daysTo(val2) >= 0)
+            return true;
+    }
+    return false;
+    QModelIndex sourceIndex = model->index(sourceRow, 0, sourceParent);
+    if (!sourceIndex.isValid())
+        return true;
+    return result;
 }

@@ -2,21 +2,9 @@
     <qresource prefix="/">
         <file>mainView.qml</file>
         <file>qml/Detail.qml</file>
-        <file>qml/Options.qml</file>
+        <file>qml/Search.qml</file>
         <file>qml/BranchView.qml</file>
         <file>qml/CommitView.qml</file>
         <file>qml/FileSystemView.qml</file>
-    </qresource>
-    <qresource prefix="/src/main">
-        <file alias="index.html">src/main/index.html</file>
-<!--        <file alias="index.js">src/main/index.js</file>-->
-    </qresource>
-    <qresource prefix="/gitgraph/examples">
-        <file alias="index.html">3rd-Party/gitgraph.js/examples/index.html</file>
-        <file alias="index.js">3rd-Party/gitgraph.js/examples/index.js</file>
-    </qresource>
-    <qresource prefix="/gitgraph/src">
-        <file alias="gitgraph.js">3rd-Party/gitgraph.js/src/gitgraph.js</file>
-        <file alias="gitgraph.css">3rd-Party/gitgraph.js/src/gitgraph.css</file>
     </qresource>
 </RCC>

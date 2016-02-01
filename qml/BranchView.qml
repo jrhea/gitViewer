@@ -15,6 +15,7 @@ ToolBar {
         branchComboBox.model = branchModel
         branchComboBox.currentIndex=0
         branchComboBox.update()
+       // branchController.branch = branchComboBox.currentText;
     }
 
     Label {
@@ -35,7 +36,7 @@ ToolBar {
         anchors.leftMargin: 10
         onCurrentIndexChanged:
         {
-            gitController.branch = branchComboBox.currentText;
+            branchController.branch = branchComboBox.currentText;
         }
     }
 }

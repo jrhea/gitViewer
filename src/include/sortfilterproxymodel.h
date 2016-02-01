@@ -59,6 +59,9 @@ class SortFilterProxyModel : public QSortFilterProxyModel, public QQmlParserStat
     Q_PROPERTY(QByteArray filterRole READ filterRole WRITE setFilterRole)
     Q_PROPERTY(QString filterString READ filterString WRITE setFilterString)
     Q_PROPERTY(FilterSyntax filterSyntax READ filterSyntax WRITE setFilterSyntax)
+    Q_PROPERTY(QString customFilterString READ customFilterString WRITE setCustomFilterString)
+    Q_PROPERTY(int customFilterSyntax READ customFilterSyntax WRITE setCustomFilterSyntax)
+
 
     Q_ENUMS(FilterSyntax)
 
@@ -84,9 +87,19 @@ public:
         Wildcard,
         FixedString
     };
+    enum CustomFilterSyntax {
+        None,
+        DateRange
+    };
 
     FilterSyntax filterSyntax() const;
     void setFilterSyntax(FilterSyntax syntax);
+
+    int customFilterSyntax() const;
+    void setCustomFilterSyntax(int syntax);
+
+    QString customFilterString() const;
+    void setCustomFilterString(const QString &filter);
 
     int count() const;
     Q_INVOKABLE QJSValue get(int index) const;
@@ -101,11 +114,15 @@ protected:
     int roleKey(const QByteArray &role) const;
     QHash<int, QByteArray> roleNames() const;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+    bool isFiltered(int sourceRow, const QModelIndex &sourceParent) const;
+    bool isInDateRange(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
     bool m_complete;
     QByteArray m_sortRole;
     QByteArray m_filterRole;
+    int _customFilterSyntax;
+    QString _customFilterString;
 };
 
 #endif // SORTFILTERPROXYMODEL_H

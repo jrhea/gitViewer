@@ -12,8 +12,10 @@ import sortfilterproxymodel 1.0
 Item {
     id: root
     property alias model: commitTable.model
-    property Item detail: detailTab
+    property Item detailtab: detailTab
+    property Item searchtab: searchTab
     signal refresh()
+    signal search(string searchRole, int searchType, string searchText)
     signal sort(string sortRole, int sortOrder)
     signal filter(string filterRole, string filterText)
 
@@ -55,11 +57,11 @@ Item {
                 }
                 else
                 {
-                    item.authorField.text = gitController.getCommitInfo(row,"author");
-                    item.emailField.text = gitController.getCommitInfo(row,"email");
-                    item.dateField.text = gitController.getCommitInfo(row,"date");
-                    item.commitIdField.text = gitController.getCommitInfo(row,"commitId");
-                    item.commitMessageField.text = gitController.getCommitInfo(row,"message");
+                    item.authorField.text = commitController.getCommit(row,"author");
+                    item.emailField.text = commitController.getCommit(row,"email");
+                    item.dateField.text = commitController.getCommit(row,"date");
+                    item.commitIdField.text = commitController.getCommit(row,"commitId");
+                    item.commitMessageField.text = commitController.getCommit(row,"message");
                 }
 
             }
@@ -70,8 +72,14 @@ Item {
             }
         }
         Tab {
-            title: "Options"
-            Options {
+            id:searchTab
+            property Item searchButton: item.searchButton
+            property int searchType : item.searchType
+            property string searchRole : item.searchRole
+            property string searchText : item.searchText
+
+            title: "Search"
+            Search {
                 enabled: true
             }
         }

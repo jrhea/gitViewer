@@ -55,21 +55,6 @@ QStringList GitAdapter::getBranchNames(bool local, bool remote)
     return result;
 }
 
-//void GitAdapter::getBranches(QStandardItemModel * branchModel, const QString &branch, int role, bool local, bool remote) const
-//{
-//    Git::Result r;
-//    QStandardItem *it = NULL;
-//    _branch = _repository.currentBranch(r);
-
-//    if(r)
-//    {
-
-//        it = new QStandardItem();
-//        it->setData(branch,role);
-//        branchModel->setItem(0,0,it);
-//    }
-//}
-
 void GitAdapter::getCommits(QStandardItemModel * commitModel, QList<int> roles,const QString &branch, bool topoSort, bool timeSort)
 {
     Git::Result r;
@@ -79,15 +64,13 @@ void GitAdapter::getCommits(QStandardItemModel * commitModel, QList<int> roles,c
 
     Git::RevisionWalker walker;
     walker = Git::RevisionWalker::create(r,_repository);
-    //_commitModel->clear();
+    commitModel->clear();
 
     if(r)
     {
         walker.setSorting(r,topoSort,timeSort);
         //walker.hideRef(r,"refs/heads/new");
         walker.push(r, oid);
-
-
         QStandardItem* it = NULL;
         while(walker.next(r,oid))
         {
@@ -106,7 +89,6 @@ void GitAdapter::getCommits(QStandardItemModel * commitModel, QList<int> roles,c
                                "\nGit error: %s", qPrintable( r.errorText() ) );
             }
         }
-        //_engine->rootContext()->setContextProperty("commitModel",_commitModel);
     }
 }
 

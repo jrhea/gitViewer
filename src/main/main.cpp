@@ -14,8 +14,7 @@
 #define QtQuickControlsApplication QApplication
 
 
-#include <gitcontroller.h>
-
+#include <gitviewer.h>
 
 #include<QDebug>
 
@@ -29,15 +28,11 @@ int main(int argc, char *argv[])
         fmt.setProfile(QSurfaceFormat::CoreProfile);
         QSurfaceFormat::setDefaultFormat(fmt);
     }
-    qRegisterMetaType<CommitModel>();
-    qRegisterMetaType<BranchModel>();
-    //qmlRegisterType<GitController>("Git",0,1,"GitController");
 
-
-    GitController *gitController = new GitController(&engine);
-    engine.rootContext()->setContextProperty("gitController", gitController);
+    GitViewer *gitController = new GitViewer(&engine);
+    engine.rootContext()->setContextProperty("branchController", gitController->getBranchController());
     engine.rootContext()->setContextProperty("fileSystemModel", gitController->getFileSystemModel());
-    engine.rootContext()->setContextProperty("commitModel",gitController->getCommitModel());
+    engine.rootContext()->setContextProperty("commitController",gitController->getCommitController());
     engine.addImportPath("src/include");
     qmlRegisterType<SortFilterProxyModel>("sortfilterproxymodel",1,0,"SortFilterProxyModel");
 
