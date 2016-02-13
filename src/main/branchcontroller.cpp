@@ -48,10 +48,9 @@ void BranchController::resetModel()
 
 void BranchController::loadModel()
 {
-    _branchModel->clear();
-    _branch="";
+    this->resetModel();
     QStandardItem *it = NULL;
-    QString branchName = _adapter->getHeadBranchName();
+    QString branchName = _adapter->getCurrentBranchName();
     QStringList branchNames = _adapter->getBranchNames(true, false);
     //add current branch first
     it = new QStandardItem();

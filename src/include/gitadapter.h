@@ -2,24 +2,26 @@
 #define GITADAPTER_H
 
 #include <QObject>
+#include <QString>
 #include <QStandardItemModel>
 
-#include <libGitWrap/Commit.hpp>
-#include <libGitWrap/Repository.hpp>
+#include <git2.h>
+
+#define CSTR2QSTR(s, ...) QString::fromUtf8(s, ##__VA_ARGS__)
+#define QSTR2CSTR(s) qPrintable(s)
+
 
 class GitAdapter : public QObject
 {
     Q_OBJECT
 public:
     explicit GitAdapter(QObject *parent = 0);
+    ~GitAdapter();
 
-
-    QString getBranchName(const QString &objectId) const;
-    QString getHeadBranchName();
+    QString getCurrentBranchName();
     //Returns all local and remote branch names
     QStringList getBranchNames(bool local, bool remote);
 
-   // void getBranches(QStandardItemModel * branchModel, const QString &branch, int role, bool local, bool remote) const;
     void getCommits(QStandardItemModel * commitModel, QList<int> roles, const QString &branch, bool topoSort, bool timeSort);
 
 signals:
@@ -29,11 +31,12 @@ public slots:
     void openRepository(const QString &path);
 
 protected:
-    Git::BranchRef getBranch(const QString &name);
-    Git::Commit getCommit(const Git::ObjectId &objectId);
+ //   Git::BranchRef getBranch(const QString &name);
+ //   Git::Commit getCommit(const Git::ObjectId &objectId);
 
 private:
-    Git::Repository _repository = NULL;
+   // Git::Repository _repository = NULL;
+    git_repository *_repo = NULL;
 };
 
 #endif // GITADAPTER_H

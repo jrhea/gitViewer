@@ -18,7 +18,17 @@ QHash<int, QByteArray> CommitModel::roleNames() const
     roles[Email] = "email";
     roles[Date] = "date";
     roles[CommitId] = "commitId";
-
+    roles[FullMessage] = "fullmessage";
     return roles;
+}
+
+QList<int> CommitModel::roleList() const
+{
+    QList<int> result;
+    for(int i=Message;i<=FullMessage;i++)
+    {
+        result.append(i);
+    }
+    return result;
 }
 

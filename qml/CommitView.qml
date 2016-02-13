@@ -61,7 +61,7 @@ Item {
                     item.emailField.text = commitController.getCommit(row,"email");
                     item.dateField.text = commitController.getCommit(row,"date");
                     item.commitIdField.text = commitController.getCommit(row,"commitId");
-                    item.commitMessageField.text = commitController.getCommit(row,"message");
+                    item.commitMessageField.text = commitController.getCommit(row,"fullmessage");
                 }
 
             }
@@ -88,9 +88,10 @@ Item {
     TableView {
         id: commitTable
         frameVisible: true
-        sortIndicatorColumn: 3
-        sortIndicatorVisible: true
+        sortIndicatorColumn: -1
+        sortIndicatorVisible: false
         height: parent.height/2
+        sortIndicatorOrder: -1
         selectionMode: 1
         anchors.right: parent.right
         anchors.rightMargin: 0

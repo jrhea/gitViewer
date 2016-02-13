@@ -191,7 +191,7 @@ ScrollView {
                             onClicked:
                             {
                                 searchRole = radioGroup.role
-                                searchType = searchRole === "date" ? 1 : 2
+                                searchType = searchRole === "date" ? 1 : 0
                                 if(searchRole === "author")
                                 {
                                     searchText = authorTextField.text

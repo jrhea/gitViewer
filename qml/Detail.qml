@@ -54,7 +54,7 @@ ScrollView {
     property Item emailField: emailTextField
     property Item dateField: dateTextField
     property Item commitIdField: commitIdTextField
-    property Item commitMessageField: commitMessageTextField
+    property Item commitMessageField: commitMessageTextArea
 
 
     horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
@@ -152,9 +152,11 @@ ScrollView {
                     }
 
 
-                    TextField {
-                        id: commitMessageTextField
+                    TextArea {
+                        id: commitMessageTextArea
                         text: ""
+                        tabChangesFocus: true
+                        highlightOnFocus: true
                         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                         x: 129
                         y: 16
@@ -164,7 +166,6 @@ ScrollView {
                         readOnly: true
                         Layout.fillHeight: true
                         Layout.fillWidth: true
-                        placeholderText: qsTr("")
 
                     }
                 }

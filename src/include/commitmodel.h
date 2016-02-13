@@ -14,11 +14,13 @@ public:
         Author,
         Email,
         Date,
-        CommitId
+        CommitId,
+        FullMessage
     };
     explicit CommitModel(QObject * parent = 0);
     ~CommitModel();
     QHash<int, QByteArray> roleNames() const;
+    QList<int> roleList() const;
 };
 
 #endif // COMMITMODEL_H

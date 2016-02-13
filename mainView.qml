@@ -60,24 +60,25 @@ ApplicationWindow {
             onSearch:
             {
                 proxyModel.filterRole = searchRole
-                proxyModel.filterSyntax= searchType < 0 ? SortFilterProxyModel.Wildcard : SortFilterProxyModel.FixedString
-                proxyModel.customFilterSyntax=1
-                proxyModel.filterCaseSensitivity= Qt.CaseSensitive
-                proxyModel.customFilterString= searchText
-                proxyModel.filterString= searchText
+                proxyModel.filterSyntax = SortFilterProxyModel.FixedString
+                proxyModel.customFilterSyntax = searchType
+                proxyModel.filterCaseSensitivity = Qt.CaseSensitive
+                proxyModel.customFilterString = searchText
+                proxyModel.filterString = searchText
             }
 
             onSort:
             {
-                proxyModel.sortRole = sortRole
-                proxyModel.sortOrder = sortOrder
-                proxyModel.sortCaseSensitivity = Qt.CaseInsensitive
+//                proxyModel.sortRole = sortRole
+//                proxyModel.sortOrder = sortOrder
+//                proxyModel.sortCaseSensitivity = Qt.CaseInsensitive
             }
 
             onFilter:
             {
                 proxyModel.filterRole= filterRole;
                 proxyModel.filterSyntax= SortFilterProxyModel.Wildcard
+                proxyModel.customFilterSyntax=0
                 proxyModel.filterCaseSensitivity= Qt.CaseInsensitive
                 proxyModel.filterString= "*" + filterText + "*"
             }

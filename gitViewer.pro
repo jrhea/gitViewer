@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets concurrent
+QT += qml quick concurrent widgets
 CONFIG += c++11
 
 SOURCES += src/main/main.cpp \
@@ -15,6 +15,9 @@ SOURCES += src/main/main.cpp \
 
 RESOURCES += qml.qrc
 
+#QT_ANGLE_PLATFORM (introduced in Qt 5.4) can be used to control the render backend.
+#Possible values are d3d11, d3d9 and warp.
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = . \
 
@@ -24,7 +27,7 @@ QML2_IMPORT_PATH = src/include \
 include(deployment.pri)
 
 INCLUDEPATH += src/include \
-    3rd-Party/libGitWrap
+    3rd-Party/libgit2/include
 
 HEADERS += \
     src/include/branchmodel.h \
@@ -36,9 +39,9 @@ HEADERS += \
     src/include/commitcontroller.h \
     src/include/gitviewer.h
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/3rd-Party/libGitWrap/build/libGitWrap/release/ -lGitWrap.0.0.20
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/3rd-Party/libGitWrap/build/libGitWrap/debug/ -lGitWrap.0.0.20
-else:unix: LIBS += -L$$PWD/3rd-Party/libGitWrap/build/libGitWrap/ -lGitWrap.0.0.20
 
-INCLUDEPATH += $$PWD/3rd-Party/libGitWrap/build/libGitWrap
-DEPENDPATH += $$PWD/3rd-Party/libGitWrap/build/libGitWrap
+
+win32: LIBS += -L$$PWD/3rd-Party/libgit2/lib/ -llibgit2.dll
+INCLUDEPATH += $$PWD/3rd-Party/libgit2/include
+DEPENDPATH += $$PWD/3rd-Party/libgit2/include
+

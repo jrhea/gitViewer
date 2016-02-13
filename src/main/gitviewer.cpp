@@ -12,7 +12,7 @@ GitViewer::GitViewer(QQmlApplicationEngine *engine, QObject *parent): QObject(pa
 {
     _engine = engine;
     _adapter = new GitAdapter();
-    _path = QDir::homePath();  //TODO: set this to C:\ for windows
+    _path = QDir::rootPath();  //TODO: set this to C:\ for windows
 
     _fileSystemModel = new FileSystemModel(parent);
     _fileSystemModel->setRootPath(_path);
@@ -27,11 +27,12 @@ GitViewer::GitViewer(QQmlApplicationEngine *engine, QObject *parent): QObject(pa
     connect(_fileSystemModel,SIGNAL(pathChanged(const QString &)),
             _adapter,SLOT(openRepository(const QString &)));
 
-    connect(_adapter,SIGNAL(invalidRepository()),
-            _branchController,SLOT(resetModel()));
+    //Disconnecting this allowed current branch to be selected in branchComboBox
+//    connect(_adapter,SIGNAL(invalidRepository()),
+//            _branchController,SLOT(resetModel()));
 
-    connect(_adapter,SIGNAL(invalidRepository()),
-            _commitController,SLOT(resetModel()));
+//    connect(_adapter,SIGNAL(invalidRepository()),
+//            _commitController,SLOT(resetModel()));
 
     connect(_adapter,SIGNAL(repositoryChanged()),
             _branchController,SLOT(loadModel()));

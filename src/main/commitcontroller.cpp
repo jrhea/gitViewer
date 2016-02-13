@@ -37,18 +37,13 @@ void CommitController::resetModel()
 void CommitController::loadModel(const QString &branch)
 {
     _commitModel->clear();
-    QList<int> roles;
-    roles.append(CommitModel::Message);
-    roles.append(CommitModel::Author);
-    roles.append(CommitModel::Email);
-    roles.append(CommitModel::Date);
-    roles.append(CommitModel::CommitId);
+
 
 //    QFuture<void> gitter;
 //    connect(_watcher,SIGNAL(finished()),this,SIGNAL(modelChanged()));
 //    gitter = QtConcurrent::run(_adapter,&GitAdapter::getCommits,_commitModel,roles,branch,true,true);
 //    _watcher->setFuture(gitter);
-    _adapter->getCommits(_commitModel,roles,branch,true,true);
+    _adapter->getCommits(_commitModel,_commitModel->roleList(),branch,true,true);
     emit this->modelChanged();
 }
 
