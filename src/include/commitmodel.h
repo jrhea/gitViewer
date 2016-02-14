@@ -17,7 +17,7 @@ public:
         CommitId,
         FullMessage
     };
-    explicit CommitModel(QObject * parent = 0);
+    explicit CommitModel(QObject * parent = nullptr);
     ~CommitModel();
     QHash<int, QByteArray> roleNames() const;
     QList<int> roleList() const;

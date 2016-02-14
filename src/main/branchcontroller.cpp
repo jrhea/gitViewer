@@ -20,58 +20,81 @@ BranchController::~BranchController()
     delete _branchModel;
 }
 
+/**
+ * @brief BranchController::getBranchModel - returns the branch model object
+ * @return BranchModel
+ */
 BranchModel *BranchController::getBranchModel() const
 {
     return _branchModel;
 }
 
+/**
+ * @brief BranchController::branch - name of the branch that the commit model represents
+ * @return QString
+ */
 QString BranchController::branch() const
 {
     return _branch;
 }
 
+/**
+ * @brief BranchController::setBranch - updates what branch the commit model represents
+ * @param branch - name of the branch to load
+ * @signal branchChanged(QString)
+ */
 void BranchController::setBranch(const QString &branch)
 {
-        if(branch != _branch)
-        {
-            _branch = branch;
-            emit this->branchChanged(branch);
-        }
+    if(branch != _branch)
+    {
+        _branch = branch;
+        emit this->branchChanged(branch);
+    }
 }
 
+/**
+ * @brief BranchController::resetModel - clears the branch model
+ * @signal modelChanged()
+ */
 void BranchController::resetModel()
 {
-     _branchModel->clear();
-     _branch = "";
-     emit this->modelChanged();
-}
-
-void BranchController::loadModel()
-{
-    this->resetModel();
-    QStandardItem *it = NULL;
-    QString branchName = _adapter->getCurrentBranchName();
-    QStringList branchNames = _adapter->getBranchNames(true, false);
-    //add current branch first
-    it = new QStandardItem();
-    it->setData(branchName,BranchModel::Name);
-    _branchModel->setItem(0,0,it); //load the head as the first item
-
-    //add the rest of the branches
-    for(int i=0;i<branchNames.count();i++)
-    {
-        if(branchNames.at(i) != branchName)
-        {
-            it = new QStandardItem();
-            it->setData(branchNames.at(i), BranchModel::Name);
-            _branchModel->setItem(i+1,0,it);  //+1 to avoid overiding head in the first position
-        }
-    }
-    this->setBranch(branchName);
+    _branchModel->clear();
+    _branch = QString();
     emit this->modelChanged();
 }
 
-void BranchController::updateBranchView()
+/**
+ * @brief BranchController::loadModel - populates the branch model
+ * @signal modelChanged
+ */
+void BranchController::loadModel()
+{
+    this->resetModel();
+    QString currentBranchName = _adapter->getCurrentBranchName();
+    QStringList branchNames = _adapter->getBranchNames();
+    QStandardItem *item = new QStandardItem();
+
+    item->setData(currentBranchName,BranchModel::Name);
+    _branchModel->setItem(0,0,item);
+
+    for(int i=0;i<branchNames.count();i++)
+    {
+        if(branchNames.at(i) != currentBranchName)
+        {
+            item = new QStandardItem();
+            item->setData(branchNames.at(i), BranchModel::Name);
+            _branchModel->appendRow(item);
+        }
+    }
+
+    this->setBranch(currentBranchName);
+    emit this->modelChanged();
+}
+
+/**
+ * @brief BranchController::updateView - updates the branch view with model
+ */
+void BranchController::updateView()
 {
     _engine->rootContext()->setContextProperty("branchModel",_branchModel);
 }

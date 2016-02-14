@@ -13,7 +13,7 @@ class CommitController : public QObject
 {
     Q_OBJECT
 public:
-    explicit CommitController(QObject *parent = 0);
+    explicit CommitController(QObject *parent = nullptr);
     explicit CommitController(QQmlApplicationEngine *engine, GitAdapter * adapter, QObject *parent=0);
     ~CommitController();
 
@@ -21,20 +21,21 @@ public:
 
 signals:
     void modelChanged();
+    void commitsLoaded();
 
 public slots:
     void resetModel();
-    void loadModel(const QString &branch);
-    void updateCommitView();
+    void loadCommits(const QString &branch);
+    void populateModel();
+    void updateView();
     QString getCommit(int row,QString role);
-    QString searchCommits(QString query,int role);
-
 
 private:
     QFutureWatcher<void> *_watcher;
     QQmlApplicationEngine *_engine;
     GitAdapter *_adapter;
     CommitModel *_commitModel = NULL;
+    QList<QStringList*> *_modelSurrogate = NULL;
 
 };
 #endif // COMMITCONTROLLER_H

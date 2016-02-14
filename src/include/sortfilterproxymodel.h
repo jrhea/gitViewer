@@ -66,7 +66,7 @@ class SortFilterProxyModel : public QSortFilterProxyModel, public QQmlParserStat
     Q_ENUMS(FilterSyntax)
 
 public:
-    explicit SortFilterProxyModel(QObject *parent = 0);
+    explicit SortFilterProxyModel(QObject *parent = nullptr);
 
     QObject *source() const;
     void setSource(QObject *source);

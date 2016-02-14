@@ -9,6 +9,7 @@
 #include <QQuickItem>
 #include <QQmlApplicationEngine>
 #include <QSurfaceFormat>
+#include<QDebug>
 
 #ifdef QT_WIDGETS_LIB
 #include <QtWidgets/QApplication>
@@ -22,16 +23,12 @@
 #define QtQuickControlsApplication QGuiApplication
 #endif
 
-
 #include <gitviewer.h>
-
-#include<QDebug>
 
 int main(int argc, char *argv[])
 {
-    QtQuickControlsApplication::setAttribute(Qt::AA_UseDesktopOpenGL,true);
     QtQuickControlsApplication app(argc, argv);
-    app.setOrganizationName("Me");
+    app.setOrganizationName("jonny rhea");
     app.setOrganizationDomain("jrhea.github.io");
     app.setApplicationName(QFileInfo(app.applicationFilePath()).baseName());
 
@@ -42,25 +39,20 @@ int main(int argc, char *argv[])
         fmt.setProfile(QSurfaceFormat::CoreProfile);
         QSurfaceFormat::setDefaultFormat(fmt);
     }
-
-
-    //    QQuickView view;
-    //if (qgetenv("QT_QUICK_CORE_PROFILE").toInt())
-    //{
-//        QSurfaceFormat f = view.format();
-//        f.setProfile(QSurfaceFormat::CoreProfile);
-//        f.setVersion(4, 4);
-//        view.setFormat(f);
-   // }
+    //For debugging QML/OpenGL issue with VirtualBox/Windows 7
+#if 0
+    QLoggingCategory::setFilterRules(QStringLiteral("qt.qpa.gl=true"));
+#endif
 
     QQmlApplicationEngine engine;
-    GitViewer *gitController = new GitViewer(&engine);
-    engine.rootContext()->setContextProperty("branchController", gitController->getBranchController());
-    engine.rootContext()->setContextProperty("fileSystemModel", gitController->getFileSystemModel());
-    engine.rootContext()->setContextProperty("commitController",gitController->getCommitController());
     engine.addImportPath("src/include");
+
+    QScopedPointer<GitViewer> gitViewer(new GitViewer());
+    gitViewer->init(&engine);
+
     qmlRegisterType<SortFilterProxyModel>("sortfilterproxymodel",1,0,"SortFilterProxyModel");
 
     engine.load(QUrl(QStringLiteral("qrc:/mainView.qml")));
+
     return app.exec();
 }

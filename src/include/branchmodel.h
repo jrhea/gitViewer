@@ -12,9 +12,10 @@ public:
     enum Role {
         Name=Qt::UserRole,
     };
-    explicit BranchModel(QObject * parent = 0);
+    explicit BranchModel(QObject * parent = nullptr);
     ~BranchModel();
     QHash<int, QByteArray> roleNames() const;
+    QList<int> roleList() const;
 
 
 };

@@ -3,7 +3,8 @@
 
 #include <QObject>
 #include <QString>
-#include <QStandardItemModel>
+#include <QStringList>
+#include <QList>
 
 #include <git2.h>
 
@@ -15,28 +16,24 @@ class GitAdapter : public QObject
 {
     Q_OBJECT
 public:
-    explicit GitAdapter(QObject *parent = 0);
+    explicit GitAdapter(QObject *parent = nullptr);
     ~GitAdapter();
 
     QString getCurrentBranchName();
-    //Returns all local and remote branch names
-    QStringList getBranchNames(bool local, bool remote);
+    QStringList getBranchNames(bool local=true, bool remote=false);
 
-    void getCommits(QStandardItemModel * commitModel, QList<int> roles, const QString &branch, bool topoSort, bool timeSort);
+    void getCommits(QList<QStringList*> *modelSurrogate, const QString &branch, bool topoSort = true, bool timeSort = true);
 
 signals:
     void repositoryChanged();
     void invalidRepository();
+
 public slots:
     void openRepository(const QString &path);
 
-protected:
- //   Git::BranchRef getBranch(const QString &name);
- //   Git::Commit getCommit(const Git::ObjectId &objectId);
 
 private:
-   // Git::Repository _repository = NULL;
-    git_repository *_repo = NULL;
+    git_repository *_repo = nullptr;
 };
 
 #endif // GITADAPTER_H

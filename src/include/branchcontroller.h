@@ -11,8 +11,8 @@ class BranchController : public QObject
 {
     Q_OBJECT
 public:
-    explicit BranchController(QObject *parent = 0);
-    explicit BranchController(QQmlApplicationEngine *engine, GitAdapter * adapter, QObject *parent=0);
+    explicit BranchController(QObject *parent = nullptr);
+    explicit BranchController(QQmlApplicationEngine *engine, GitAdapter * adapter, QObject *parent=nullptr);
 
     ~BranchController();
 
@@ -31,13 +31,13 @@ signals:
 public slots:
     void resetModel();
     void loadModel();
-    void updateBranchView();
+    void updateView();
 
 
 private:
     QQmlApplicationEngine *_engine;
     GitAdapter *_adapter;
-    BranchModel *_branchModel = NULL;
+    BranchModel *_branchModel = nullptr;
     QString _branch;
 
 };

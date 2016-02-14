@@ -10,10 +10,10 @@ SOURCES += src/main/main.cpp \
     src/main/filesystemmodel.cpp \
     src/main/gitadapter.cpp \
     src/main/commitcontroller.cpp \
-    src/main/branchcontroller.cpp \
-    src/main/gitviewer.cpp
+    src/main/branchcontroller.cpp
 
 RESOURCES += qml.qrc
+
 
 #QT_ANGLE_PLATFORM (introduced in Qt 5.4) can be used to control the render backend.
 #Possible values are d3d11, d3d9 and warp.
@@ -37,7 +37,8 @@ HEADERS += \
     src/include/gitadapter.h \
     src/include/branchcontroller.h \
     src/include/commitcontroller.h \
-    src/include/gitviewer.h
+    src/include/gitviewer.h \
+    src/include/utils.h
 
 
 

@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <QDateTime>
+#include <QDebug>
 
 #include "gitadapter.h"
-
+#include "utils.h"
 
 GitAdapter::GitAdapter(QObject *parent) : QObject(parent)
 {
@@ -15,6 +16,10 @@ GitAdapter::~GitAdapter()
     git_libgit2_shutdown();
 }
 
+/**
+ * @brief GitAdapter::openRepository - opens repo at path
+ * @param path - path of the repo to open
+ */
 void GitAdapter::openRepository(const QString &path)
 {
     int git_result = git_repository_open(&_repo,QSTR2CSTR(path));
@@ -31,16 +36,25 @@ void GitAdapter::openRepository(const QString &path)
     return;
 }
 
+/**
+ * @brief GitAdapter::getCurrentBranchName - returns the name of the current branch
+ * @return
+ */
 QString GitAdapter::getCurrentBranchName()
 {
     QString result;
-    git_reference* ref = NULL;
+    git_reference* ref = nullptr;
     git_repository_head( &ref, _repo );
     result = CSTR2QSTR(git_reference_shorthand(ref));
     git_reference_free(ref);
     return result;
 }
-
+/**
+ * @brief GitAdapter::getBranchNames - Return a list of branch names
+ * @param local - corresponds to libGit2's GIT_BRANCH_LOCAL
+ * @param remote - corresponds to libGit2's GIT_BRANCH_REMOTE (not implemented)
+ * @return
+ */
 QStringList GitAdapter::getBranchNames(bool local, bool remote)
 {
     QStringList result;
@@ -75,7 +89,15 @@ QStringList GitAdapter::getBranchNames(bool local, bool remote)
     return result;
 }
 
-void GitAdapter::getCommits(QStandardItemModel * commitModel, QList<int> roles, const QString &branch, bool topoSort, bool timeSort)
+/**
+ * @brief GitAdapter::getCommits - populate a model with commits from a branch
+ * @param commitModel - model
+ * @param roles - model's roles
+ * @param branch - name of the branch to load
+ * @param topoSort - corresponds to libGit2's GIT_SORT_TOPOLOGICAL
+ * @param timeSort - corresponds to libGit2's GIT_SORT_TIME
+ */
+void GitAdapter::getCommits(QList<QStringList*> *modelSurrogate, const QString &branch, bool topoSort, bool timeSort)
 {
     int git_result;
     int msg_len;
@@ -87,13 +109,17 @@ void GitAdapter::getCommits(QStandardItemModel * commitModel, QList<int> roles, 
     git_commit *commit;
     git_oid oid;
 
-    QStandardItem* it;
+    QStringList* row;
     QString refname;
+
+    unsigned int sort_mode = 0;
 
     git_result = git_revwalk_new(&walker, _repo);
     if(git_result == 0)
     {
-        //git_revwalk_sorting(walker,  GIT_SORT_TOPOLOGICAL | GIT_SORT_TIME);
+        if(topoSort) sort_mode |= GIT_SORT_TOPOLOGICAL;
+        if(timeSort) sort_mode |= GIT_SORT_TIME;
+        git_revwalk_sorting(walker, sort_mode);
         git_result = git_reference_dwim(&ref, _repo, QSTR2CSTR(branch));
         refname = CSTR2QSTR(git_reference_name(ref));
         git_reference_lookup(&ref, _repo, QSTR2CSTR(refname));
@@ -105,37 +131,45 @@ void GitAdapter::getCommits(QStandardItemModel * commitModel, QList<int> roles, 
         {
             if(git_commit_lookup(&commit, _repo, &oid))
             {
-                qCritical("Failed to lookup the next object\n",stderr);
+                qCritical("Failed to lookup the next object\n");
                 break;
             }
 
-            it = new QStandardItem();
+            row = new QStringList();
 
             message = git_commit_message(commit);
             for (msg_len=0;message[msg_len] && message[msg_len] != '\n';msg_len++){}
-            it->setData(CSTR2QSTR(message,msg_len), roles[0]);
+            //it->setData(CSTR2QSTR(message,msg_len), roles[0]);
+            row->append(CSTR2QSTR(message,msg_len));
 
             committer = git_commit_committer(commit);
-            it->setData(committer->name, roles[1]);
-            it->setData(committer->email, roles[2]);
+            //it->setData(committer->name, roles[1]);
+            row->append(committer->name);
+            //it->setData(committer->email, roles[2]);
+            row->append(committer->email);
 
             QDateTime commitTime = QDateTime::fromTime_t(committer->when.time);
             commitTime.setUtcOffset(committer->when.offset * 60);
-            it->setData(commitTime.toString("MM-dd-yyyy hh:mm ap"), roles[3]);
+            //it->setData(commitTime.toString("MM-dd-yyyy hh:mm ap"), roles[3]);
+            row->append(commitTime.toString("MM-dd-yyyy hh:mm ap"));
 
             QByteArray id(GIT_OID_HEXSZ+1, 0);
             git_oid_tostr(id.data(), GIT_OID_HEXSZ+1, &oid);
-            it->setData(CSTR2QSTR(id.data()), roles[4]);
+            //it->setData(CSTR2QSTR(id.data()), roles[4]);
+            row->append(CSTR2QSTR(id.data()));
 
-            it->setData(CSTR2QSTR(message), roles[5]);
+            //it->setData(CSTR2QSTR(message), roles[5]);
+            row->append(CSTR2QSTR(message));
 
-            commitModel->appendRow(it);
+            //model->appendRow(it);
+            modelSurrogate->append(row);
 
             git_commit_free(commit);
         }
 
         git_revwalk_free(walker);
     }
+    //Sleep::msleep((long)10000);
     return;
 }
 

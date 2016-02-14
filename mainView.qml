@@ -67,13 +67,6 @@ ApplicationWindow {
                 proxyModel.filterString = searchText
             }
 
-            onSort:
-            {
-//                proxyModel.sortRole = sortRole
-//                proxyModel.sortOrder = sortOrder
-//                proxyModel.sortCaseSensitivity = Qt.CaseInsensitive
-            }
-
             onFilter:
             {
                 proxyModel.filterRole= filterRole;
