@@ -26,30 +26,17 @@ CommitController::~CommitController()
     delete _modelSurrogate;
 }
 
-/**
- * @brief CommitController::getCommitModel - returns the model object
- * @return CommitModel
- */
 CommitModel *CommitController::getCommitModel() const
 {
     return _commitModel;
 }
 
-/**
- * @brief CommitController::resetModel - clears model
- * @signal modelChanged()
- */
 void CommitController::resetModel()
 {
     _commitModel->clear();
     emit this->modelChanged();
 }
 
-/**
- * @brief CommitController::loadCommits - load commits from branch
- * @param branch - name of the branch to load
- * @signal commitsLoaded()
- */
 void CommitController::loadCommits(const QString &branch)
 {
     _commitModel->clear();
@@ -59,10 +46,6 @@ void CommitController::loadCommits(const QString &branch)
     _watcher->setFuture(gitter);
 }
 
-/**
- * @brief CommitController::populateModel - populates model with commits from branch
- * @signal modelChanged()
- */
 void CommitController::populateModel()
 {
     QStandardItem *item=nullptr;
@@ -83,20 +66,11 @@ void CommitController::populateModel()
     emit this->modelChanged();
 }
 
-/**
- * @brief CommitController::updateView - updates the commit view with model
- */
 void CommitController::updateView()
 {
     _engine->rootContext()->setContextProperty("commitModel",_commitModel);
 }
 
-/**
- * @brief CommitController::getCommit - updates commit view (detail) with individual model properties
- * @param row - identifies an item in the model collection
- * @param role - identifies the property in the model item
- * @return QString
- */
 QString CommitController::getCommit(int row, QString role)
 {
     QString result;

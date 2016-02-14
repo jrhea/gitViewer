@@ -1,0 +1,4 @@
+<map id="CommitController::modelChanged" name="CommitController::modelChanged">
+<area shape="rect" id="node2" href="$class_commit_controller.html#ac793e426b59b77569eac02e825e91ac9" title="restores the model to the initial state " alt="" coords="269,5,464,32"/>
+<area shape="rect" id="node3" href="$class_commit_controller.html#a9f885e9958f88171205a4a5768361ea2" title="populates model with commits from branch " alt="" coords="277,57,456,98"/>
+</map>

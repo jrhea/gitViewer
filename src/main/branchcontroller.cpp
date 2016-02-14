@@ -20,29 +20,16 @@ BranchController::~BranchController()
     delete _branchModel;
 }
 
-/**
- * @brief BranchController::getBranchModel - returns the branch model object
- * @return BranchModel
- */
 BranchModel *BranchController::getBranchModel() const
 {
     return _branchModel;
 }
 
-/**
- * @brief BranchController::branch - name of the branch that the commit model represents
- * @return QString
- */
 QString BranchController::branch() const
 {
     return _branch;
 }
 
-/**
- * @brief BranchController::setBranch - updates what branch the commit model represents
- * @param branch - name of the branch to load
- * @signal branchChanged(QString)
- */
 void BranchController::setBranch(const QString &branch)
 {
     if(branch != _branch)
@@ -52,10 +39,6 @@ void BranchController::setBranch(const QString &branch)
     }
 }
 
-/**
- * @brief BranchController::resetModel - clears the branch model
- * @signal modelChanged()
- */
 void BranchController::resetModel()
 {
     _branchModel->clear();
@@ -63,10 +46,6 @@ void BranchController::resetModel()
     emit this->modelChanged();
 }
 
-/**
- * @brief BranchController::loadModel - populates the branch model
- * @signal modelChanged
- */
 void BranchController::loadModel()
 {
     this->resetModel();
@@ -91,9 +70,6 @@ void BranchController::loadModel()
     emit this->modelChanged();
 }
 
-/**
- * @brief BranchController::updateView - updates the branch view with model
- */
 void BranchController::updateView()
 {
     _engine->rootContext()->setContextProperty("branchModel",_branchModel);

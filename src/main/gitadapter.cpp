@@ -16,10 +16,6 @@ GitAdapter::~GitAdapter()
     git_libgit2_shutdown();
 }
 
-/**
- * @brief GitAdapter::openRepository - opens repo at path
- * @param path - path of the repo to open
- */
 void GitAdapter::openRepository(const QString &path)
 {
     int git_result = git_repository_open(&_repo,QSTR2CSTR(path));
@@ -36,10 +32,6 @@ void GitAdapter::openRepository(const QString &path)
     return;
 }
 
-/**
- * @brief GitAdapter::getCurrentBranchName - returns the name of the current branch
- * @return
- */
 QString GitAdapter::getCurrentBranchName()
 {
     QString result;
@@ -49,12 +41,7 @@ QString GitAdapter::getCurrentBranchName()
     git_reference_free(ref);
     return result;
 }
-/**
- * @brief GitAdapter::getBranchNames - Return a list of branch names
- * @param local - corresponds to libGit2's GIT_BRANCH_LOCAL
- * @param remote - corresponds to libGit2's GIT_BRANCH_REMOTE (not implemented)
- * @return
- */
+
 QStringList GitAdapter::getBranchNames(bool local, bool remote)
 {
     QStringList result;
@@ -89,14 +76,6 @@ QStringList GitAdapter::getBranchNames(bool local, bool remote)
     return result;
 }
 
-/**
- * @brief GitAdapter::getCommits - populate a model with commits from a branch
- * @param commitModel - model
- * @param roles - model's roles
- * @param branch - name of the branch to load
- * @param topoSort - corresponds to libGit2's GIT_SORT_TOPOLOGICAL
- * @param timeSort - corresponds to libGit2's GIT_SORT_TIME
- */
 void GitAdapter::getCommits(QList<QStringList*> *modelSurrogate, const QString &branch, bool topoSort, bool timeSort)
 {
     int git_result;

@@ -1,0 +1,7 @@
+<map id="BranchController::loadModel" name="BranchController::loadModel">
+<area shape="rect" id="node2" href="$class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state " alt="" coords="257,5,447,32"/>
+<area shape="rect" id="node3" href="$class_git_adapter.html#a4e13d400522f9f563deaabc56710b899" title="returns the name of the current branch " alt="" coords="239,56,465,83"/>
+<area shape="rect" id="node4" href="$class_git_adapter.html#aebd264d126df25a12f0cd4f451dbd06d" title="return a list of branch names " alt="" coords="256,107,448,133"/>
+<area shape="rect" id="node5" href="$class_branch_controller.html#a74b9e788cc7007076916e4c6633522ba" title="updates what branch the commit model represents " alt="" coords="259,157,445,184"/>
+<area shape="rect" id="node6" href="$class_branch_controller.html#ac7590e58162fa3cfd1a4aff1cca91ec4" title="name of the branch that the commit model represents " alt="" coords="513,157,679,184"/>
+</map>

@@ -45,6 +45,9 @@
 #include <QtQml/qqmlparserstatus.h>
 #include <QtQml/qjsvalue.h>
 
+/**
+ * @brief The SortFilterProxyModel class handles domain model sorting and filtering
+ */
 class SortFilterProxyModel : public QSortFilterProxyModel, public QQmlParserStatus
 {
     Q_OBJECT
