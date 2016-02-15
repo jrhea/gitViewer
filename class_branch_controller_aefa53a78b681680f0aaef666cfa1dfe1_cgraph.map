@@ -1,0 +1,6 @@
+<map id="BranchController::populateModel" name="BranchController::populateModel">
+<area shape="rect" id="node2" href="$class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state " alt="" coords="246,5,437,32"/>
+<area shape="rect" id="node3" href="$class_git_adapter.html#a4e13d400522f9f563deaabc56710b899" title="returns the name of the current branch " alt="" coords="228,56,455,83"/>
+<area shape="rect" id="node4" href="$class_branch_controller.html#a74b9e788cc7007076916e4c6633522ba" title="updates what branch the commit model represents " alt="" coords="249,107,434,133"/>
+<area shape="rect" id="node5" href="$class_branch_controller.html#ac7590e58162fa3cfd1a4aff1cca91ec4" title="name of the branch that the commit model represents " alt="" coords="503,107,668,133"/>
+</map>

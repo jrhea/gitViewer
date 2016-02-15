@@ -141,14 +141,15 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>The <a class="el" href="class_git_viewer.html" title="The GitViewer class initializes controllers, models, adapters, and QML engine. ">GitViewer</a> class initializes controllers, models, adapters, and QML engine. </p>
 <p>Signal/Slot Management:</p><ul>
 <li><a class="el" href="class_file_system_model.html#a49d1f573b7b3b316d22c834853b9926e" title="triggered after the path index has been changed ">FileSystemModel::pathChanged()</a> -&gt; <a class="el" href="class_git_adapter.html#a6da63f5f7796a9e80b9fb5d457aebbf3" title="opens repo at path ">GitAdapter::openRepository()</a></li>
-<li><a class="el" href="class_git_adapter.html#a1042edd57a1c895e5d9410c30cf6c855" title="triggered when the directory is changed to a valid git repo ">GitAdapter::repositoryChanged()</a> -&gt; <a class="el" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model ">BranchController::loadModel()</a></li>
+<li><a class="el" href="class_git_adapter.html#a1042edd57a1c895e5d9410c30cf6c855" title="triggered when the directory is changed to a valid git repo ">GitAdapter::repositoryChanged()</a> -&gt; BranchController::loadModel()</li>
+<li><a class="el" href="class_branch_controller.html#a64ca1a478a3159370e538b99f77a7ed3" title="triggered when data adapter has new data to be loaded into the model ">BranchController::branchesLoaded()</a> -&gt; <a class="el" href="class_branch_controller.html#aefa53a78b681680f0aaef666cfa1dfe1" title="populates the branch model ">BranchController::populateModel()</a></li>
 <li><a class="el" href="class_branch_controller.html#aaabe06f698d29dcfbce2bbe6aa00db2c" title="triggered when the branch has been changed ">BranchController::branchChanged()</a> -&gt; <a class="el" href="class_commit_controller.html#afdf33e8fe49c01fe412f802e38e38904" title="load commits from branch ">CommitController::loadCommits()</a></li>
 <li><a class="el" href="class_commit_controller.html#a86897e6e05f682eeed09efc97c361933" title="triggered when data adapter has new data to be loaded into the model ">CommitController::commitsLoaded()</a> -&gt; <a class="el" href="class_commit_controller.html#a9f885e9958f88171205a4a5768361ea2" title="populates model with commits from branch ">CommitController::populateModel()</a></li>
 <li><a class="el" href="class_branch_controller.html#afc4446fcb492d4471d7d54a25aa986c1" title="triggered when the model changes ">BranchController::modelChanged()</a> -&gt; <a class="el" href="class_branch_controller.html#a487164d73c30a3d19a4ec36a46ed0e05" title="updates the branch view with model ">BranchController::updateView()</a></li>
 <li><a class="el" href="class_commit_controller.html#ac3e01f65e4003edc6b2f08a454568bcc" title="triggered when the model changes ">CommitController::modelChanged()</a> -&gt; <a class="el" href="class_commit_controller.html#a1b03c2d7ea32f82a59a5baa308512e89" title="updates the commit view with model ">CommitController::updateView()</a> </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gitviewer_8h_source.html#l00030">30</a> of file <a class="el" href="gitviewer_8h_source.html">gitviewer.h</a>.</p>
+<p>Definition at line <a class="el" href="gitviewer_8h_source.html#l00031">31</a> of file <a class="el" href="gitviewer_8h_source.html">gitviewer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4e803893cbd95f14050b3cb3d1562981"></a>
 <div class="memitem">
@@ -180,7 +181,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="gitviewer_8h_source.html#l00038">38</a> of file <a class="el" href="gitviewer_8h_source.html">gitviewer.h</a>.</p>
+<p>Definition at line <a class="el" href="gitviewer_8h_source.html#l00039">39</a> of file <a class="el" href="gitviewer_8h_source.html">gitviewer.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +227,7 @@ Public Member Functions</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gitviewer_8h_source.html#l00063">63</a> of file <a class="el" href="gitviewer_8h_source.html">gitviewer.h</a>.</p>
+<p>Definition at line <a class="el" href="gitviewer_8h_source.html#l00064">64</a> of file <a class="el" href="gitviewer_8h_source.html">gitviewer.h</a>.</p>
 
 </div>
 </div>

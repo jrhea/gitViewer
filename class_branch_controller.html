@@ -133,12 +133,16 @@ Collaboration diagram for BranchController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a311fe743d5fa15fe8ff2a7c01806e251"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251">resetModel</a> ()</td></tr>
-<tr class="memdesc:a311fe743d5fa15fe8ff2a7c01806e251"><td class="mdescLeft">&#160;</td><td class="mdescRight">restores the model to the initial state  <a href="#a311fe743d5fa15fe8ff2a7c01806e251">More...</a><br /></td></tr>
+<tr class="memitem:a311fe743d5fa15fe8ff2a7c01806e251"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a311fe743d5fa15fe8ff2a7c01806e251"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251">resetModel</a> ()</td></tr>
+<tr class="memdesc:a311fe743d5fa15fe8ff2a7c01806e251"><td class="mdescLeft">&#160;</td><td class="mdescRight">restores the model to the initial state <br /></td></tr>
 <tr class="separator:a311fe743d5fa15fe8ff2a7c01806e251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6874d9c9d2ae52df192c37d81d9aec7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7">loadModel</a> ()</td></tr>
-<tr class="memdesc:ab6874d9c9d2ae52df192c37d81d9aec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">populates the branch model  <a href="#ab6874d9c9d2ae52df192c37d81d9aec7">More...</a><br /></td></tr>
-<tr class="separator:ab6874d9c9d2ae52df192c37d81d9aec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fbb61d3220acbf5acd1814daca8c259"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#a2fbb61d3220acbf5acd1814daca8c259">loadBranches</a> ()</td></tr>
+<tr class="memdesc:a2fbb61d3220acbf5acd1814daca8c259"><td class="mdescLeft">&#160;</td><td class="mdescRight">load branches  <a href="#a2fbb61d3220acbf5acd1814daca8c259">More...</a><br /></td></tr>
+<tr class="separator:a2fbb61d3220acbf5acd1814daca8c259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa53a78b681680f0aaef666cfa1dfe1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#aefa53a78b681680f0aaef666cfa1dfe1">populateModel</a> ()</td></tr>
+<tr class="memdesc:aefa53a78b681680f0aaef666cfa1dfe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">populates the branch model  <a href="#aefa53a78b681680f0aaef666cfa1dfe1">More...</a><br /></td></tr>
+<tr class="separator:aefa53a78b681680f0aaef666cfa1dfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a487164d73c30a3d19a4ec36a46ed0e05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a487164d73c30a3d19a4ec36a46ed0e05"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#a487164d73c30a3d19a4ec36a46ed0e05">updateView</a> ()</td></tr>
 <tr class="memdesc:a487164d73c30a3d19a4ec36a46ed0e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the branch view with model <br /></td></tr>
@@ -149,6 +153,9 @@ Signals</h2></td></tr>
 <tr class="memitem:aaabe06f698d29dcfbce2bbe6aa00db2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#aaabe06f698d29dcfbce2bbe6aa00db2c">branchChanged</a> (const QString &amp;branch)</td></tr>
 <tr class="memdesc:aaabe06f698d29dcfbce2bbe6aa00db2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">triggered when the branch has been changed  <a href="#aaabe06f698d29dcfbce2bbe6aa00db2c">More...</a><br /></td></tr>
 <tr class="separator:aaabe06f698d29dcfbce2bbe6aa00db2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64ca1a478a3159370e538b99f77a7ed3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#a64ca1a478a3159370e538b99f77a7ed3">branchesLoaded</a> ()</td></tr>
+<tr class="memdesc:a64ca1a478a3159370e538b99f77a7ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">triggered when data adapter has new data to be loaded into the model  <a href="#a64ca1a478a3159370e538b99f77a7ed3">More...</a><br /></td></tr>
+<tr class="separator:a64ca1a478a3159370e538b99f77a7ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc4446fcb492d4471d7d54a25aa986c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_branch_controller.html#afc4446fcb492d4471d7d54a25aa986c1">modelChanged</a> ()</td></tr>
 <tr class="memdesc:afc4446fcb492d4471d7d54a25aa986c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">triggered when the model changes  <a href="#afc4446fcb492d4471d7d54a25aa986c1">More...</a><br /></td></tr>
 <tr class="separator:afc4446fcb492d4471d7d54a25aa986c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,7 +192,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>branch</b></td></t
 <li>updates the model </li>
 </ul>
 
-<p>Definition at line <a class="el" href="branchcontroller_8h_source.html#l00018">18</a> of file <a class="el" href="branchcontroller_8h_source.html">branchcontroller.h</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8h_source.html#l00022">22</a> of file <a class="el" href="branchcontroller_8h_source.html">branchcontroller.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae231f51d4aa6a3e90930df67e7ebb84b"></a>
 <div class="memitem">
@@ -217,7 +224,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>branch</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00006">6</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00008">8</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
 
 </div>
 </div>
@@ -269,7 +276,17 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>branch</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00011">11</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00013">13</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_branch_controller_a4ef4fe15044d6e9a0719992ba7c6fb2d_cgraph.png" border="0" usemap="#class_branch_controller_a4ef4fe15044d6e9a0719992ba7c6fb2d_cgraph" alt=""/></div>
+<map name="class_branch_controller_a4ef4fe15044d6e9a0719992ba7c6fb2d_cgraph" id="class_branch_controller_a4ef4fe15044d6e9a0719992ba7c6fb2d_cgraph">
+<area shape="rect" id="node2" href="class_branch_controller.html#a487164d73c30a3d19a4ec36a46ed0e05" title="updates the branch view with model " alt="" coords="220,13,413,39"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -297,7 +314,7 @@ Here is the caller graph for this function:</div>
 <map name="class_branch_controller_ac7590e58162fa3cfd1a4aff1cca91ec4_icgraph" id="class_branch_controller_ac7590e58162fa3cfd1a4aff1cca91ec4_icgraph">
 <area shape="rect" id="node2" href="class_branch_controller.html#a74085a2de2115442afb2636c73d6da8a" title="returns the branch model object " alt="" coords="219,5,404,47"/>
 <area shape="rect" id="node3" href="class_branch_controller.html#a74b9e788cc7007076916e4c6633522ba" title="updates what branch the commit model represents " alt="" coords="219,71,404,98"/>
-<area shape="rect" id="node4" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model " alt="" coords="452,71,637,98"/>
+<area shape="rect" id="node4" href="class_branch_controller.html#aefa53a78b681680f0aaef666cfa1dfe1" title="populates the branch model " alt="" coords="452,64,627,105"/>
 </map>
 </div>
 </p>
@@ -342,7 +359,44 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_branch_controller_aaabe06f698d29dcfbce2bbe6aa00db2c_icgraph.png" border="0" usemap="#class_branch_controller_aaabe06f698d29dcfbce2bbe6aa00db2c_icgraph" alt=""/></div>
 <map name="class_branch_controller_aaabe06f698d29dcfbce2bbe6aa00db2c_icgraph" id="class_branch_controller_aaabe06f698d29dcfbce2bbe6aa00db2c_icgraph">
 <area shape="rect" id="node2" href="class_branch_controller.html#a74b9e788cc7007076916e4c6633522ba" title="updates what branch the commit model represents " alt="" coords="219,13,404,39"/>
-<area shape="rect" id="node3" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model " alt="" coords="452,13,637,39"/>
+<area shape="rect" id="node3" href="class_branch_controller.html#aefa53a78b681680f0aaef666cfa1dfe1" title="populates the branch model " alt="" coords="452,5,627,47"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a64ca1a478a3159370e538b99f77a7ed3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BranchController::branchesLoaded </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>triggered when data adapter has new data to be loaded into the model </p>
+<dl class="section note"><dt>Note</dt><dd>emitted by <a class="el" href="class_branch_controller.html#a2fbb61d3220acbf5acd1814daca8c259" title="load branches ">loadBranches()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#a2fbb61d3220acbf5acd1814daca8c259" title="load branches ">loadBranches()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_branch_controller_a64ca1a478a3159370e538b99f77a7ed3_icgraph.png" border="0" usemap="#class_branch_controller_a64ca1a478a3159370e538b99f77a7ed3_icgraph" alt=""/></div>
+<map name="class_branch_controller_a64ca1a478a3159370e538b99f77a7ed3_icgraph" id="class_branch_controller_a64ca1a478a3159370e538b99f77a7ed3_icgraph">
+<area shape="rect" id="node2" href="class_branch_controller.html#a2fbb61d3220acbf5acd1814daca8c259" title="load branches " alt="" coords="232,13,437,39"/>
 </map>
 </div>
 </p>
@@ -365,7 +419,7 @@ Here is the caller graph for this function:</div>
 <p>returns the branch model object </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_branch_model.html" title="The BranchModel class contains the branches for the current repository. ">BranchModel</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00023">23</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00028">28</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -379,7 +433,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="ab6874d9c9d2ae52df192c37d81d9aec7"></a>
+<a class="anchor" id="a2fbb61d3220acbf5acd1814daca8c259"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -387,7 +441,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BranchController::loadModel </td>
+          <td class="memname">void BranchController::loadBranches </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -400,22 +454,18 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>populates the branch model </p>
-<dl class="section note"><dt>Note</dt><dd>emits <a class="el" href="class_branch_controller.html#afc4446fcb492d4471d7d54a25aa986c1" title="triggered when the model changes ">modelChanged()</a> signal </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#afc4446fcb492d4471d7d54a25aa986c1" title="triggered when the model changes ">modelChanged</a> </dd></dl>
+<p>load branches </p>
+<dl class="section note"><dt>Note</dt><dd>emits signal <a class="el" href="class_branch_controller.html#a64ca1a478a3159370e538b99f77a7ed3" title="triggered when data adapter has new data to be loaded into the model ">branchesLoaded()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#a64ca1a478a3159370e538b99f77a7ed3" title="triggered when data adapter has new data to be loaded into the model ">branchesLoaded()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00049">49</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00053">53</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_branch_controller_ab6874d9c9d2ae52df192c37d81d9aec7_cgraph.png" border="0" usemap="#class_branch_controller_ab6874d9c9d2ae52df192c37d81d9aec7_cgraph" alt=""/></div>
-<map name="class_branch_controller_ab6874d9c9d2ae52df192c37d81d9aec7_cgraph" id="class_branch_controller_ab6874d9c9d2ae52df192c37d81d9aec7_cgraph">
-<area shape="rect" id="node2" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state " alt="" coords="257,5,447,32"/>
-<area shape="rect" id="node3" href="class_git_adapter.html#a4e13d400522f9f563deaabc56710b899" title="returns the name of the current branch " alt="" coords="239,56,465,83"/>
-<area shape="rect" id="node4" href="class_git_adapter.html#aebd264d126df25a12f0cd4f451dbd06d" title="return a list of branch names " alt="" coords="256,107,448,133"/>
-<area shape="rect" id="node5" href="class_branch_controller.html#a74b9e788cc7007076916e4c6633522ba" title="updates what branch the commit model represents " alt="" coords="259,157,445,184"/>
-<area shape="rect" id="node6" href="class_branch_controller.html#ac7590e58162fa3cfd1a4aff1cca91ec4" title="name of the branch that the commit model represents " alt="" coords="513,157,679,184"/>
+<div class="center"><img src="class_branch_controller_a2fbb61d3220acbf5acd1814daca8c259_cgraph.png" border="0" usemap="#class_branch_controller_a2fbb61d3220acbf5acd1814daca8c259_cgraph" alt=""/></div>
+<map name="class_branch_controller_a2fbb61d3220acbf5acd1814daca8c259_cgraph" id="class_branch_controller_a2fbb61d3220acbf5acd1814daca8c259_cgraph">
+<area shape="rect" id="node2" href="class_git_adapter.html#aebd264d126df25a12f0cd4f451dbd06d" title="return a list of branch names " alt="" coords="259,5,451,32"/>
 </map>
 </div>
 </p>
@@ -444,23 +494,22 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>triggered when the model changes </p>
-<dl class="section note"><dt>Note</dt><dd>emitted by <a class="el" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state ">resetModel()</a> and <a class="el" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model ">loadModel()</a> </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state ">resetModel()</a>,<a class="el" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model ">loadModel()</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>emitted by <a class="el" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state ">resetModel()</a> and populateModal() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state ">resetModel()</a>,populateModal() </dd></dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_branch_controller_afc4446fcb492d4471d7d54a25aa986c1_icgraph.png" border="0" usemap="#class_branch_controller_afc4446fcb492d4471d7d54a25aa986c1_icgraph" alt=""/></div>
 <map name="class_branch_controller_afc4446fcb492d4471d7d54a25aa986c1_icgraph" id="class_branch_controller_afc4446fcb492d4471d7d54a25aa986c1_icgraph">
-<area shape="rect" id="node2" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state " alt="" coords="265,5,456,32"/>
-<area shape="rect" id="node3" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model " alt="" coords="504,31,689,57"/>
+<area shape="rect" id="node2" href="class_branch_controller.html#aefa53a78b681680f0aaef666cfa1dfe1" title="populates the branch model " alt="" coords="265,5,440,47"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a311fe743d5fa15fe8ff2a7c01806e251"></a>
+<a class="anchor" id="aefa53a78b681680f0aaef666cfa1dfe1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -468,7 +517,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BranchController::resetModel </td>
+          <td class="memname">void BranchController::populateModel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -481,18 +530,21 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>restores the model to the initial state </p>
+<p>populates the branch model </p>
 <dl class="section note"><dt>Note</dt><dd>emits <a class="el" href="class_branch_controller.html#afc4446fcb492d4471d7d54a25aa986c1" title="triggered when the model changes ">modelChanged()</a> signal </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#afc4446fcb492d4471d7d54a25aa986c1" title="triggered when the model changes ">modelChanged()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00042">42</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00062">62</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
 
 <p><div class="dynheader">
-Here is the caller graph for this function:</div>
+Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_branch_controller_a311fe743d5fa15fe8ff2a7c01806e251_icgraph.png" border="0" usemap="#class_branch_controller_a311fe743d5fa15fe8ff2a7c01806e251_icgraph" alt=""/></div>
-<map name="class_branch_controller_a311fe743d5fa15fe8ff2a7c01806e251_icgraph" id="class_branch_controller_a311fe743d5fa15fe8ff2a7c01806e251_icgraph">
-<area shape="rect" id="node2" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model " alt="" coords="244,5,429,32"/>
+<div class="center"><img src="class_branch_controller_aefa53a78b681680f0aaef666cfa1dfe1_cgraph.png" border="0" usemap="#class_branch_controller_aefa53a78b681680f0aaef666cfa1dfe1_cgraph" alt=""/></div>
+<map name="class_branch_controller_aefa53a78b681680f0aaef666cfa1dfe1_cgraph" id="class_branch_controller_aefa53a78b681680f0aaef666cfa1dfe1_cgraph">
+<area shape="rect" id="node2" href="class_branch_controller.html#a311fe743d5fa15fe8ff2a7c01806e251" title="restores the model to the initial state " alt="" coords="246,5,437,32"/>
+<area shape="rect" id="node3" href="class_git_adapter.html#a4e13d400522f9f563deaabc56710b899" title="returns the name of the current branch " alt="" coords="228,56,455,83"/>
+<area shape="rect" id="node4" href="class_branch_controller.html#a74b9e788cc7007076916e4c6633522ba" title="updates what branch the commit model represents " alt="" coords="249,107,434,133"/>
+<area shape="rect" id="node5" href="class_branch_controller.html#ac7590e58162fa3cfd1a4aff1cca91ec4" title="name of the branch that the commit model represents " alt="" coords="503,107,668,133"/>
 </map>
 </div>
 </p>
@@ -523,7 +575,7 @@ Here is the caller graph for this function:</div>
 <dl class="section note"><dt>Note</dt><dd>emits signal <a class="el" href="class_branch_controller.html#aaabe06f698d29dcfbce2bbe6aa00db2c" title="triggered when the branch has been changed ">branchChanged()</a></dd></dl>
 <p>Called from QML and C++ </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_branch_controller.html#aaabe06f698d29dcfbce2bbe6aa00db2c" title="triggered when the branch has been changed ">branchChanged()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00033">33</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
+<p>Definition at line <a class="el" href="branchcontroller_8cpp_source.html#l00038">38</a> of file <a class="el" href="branchcontroller_8cpp_source.html">branchcontroller.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -540,7 +592,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_branch_controller_a74b9e788cc7007076916e4c6633522ba_icgraph.png" border="0" usemap="#class_branch_controller_a74b9e788cc7007076916e4c6633522ba_icgraph" alt=""/></div>
 <map name="class_branch_controller_a74b9e788cc7007076916e4c6633522ba_icgraph" id="class_branch_controller_a74b9e788cc7007076916e4c6633522ba_icgraph">
-<area shape="rect" id="node2" href="class_branch_controller.html#ab6874d9c9d2ae52df192c37d81d9aec7" title="populates the branch model " alt="" coords="239,5,424,32"/>
+<area shape="rect" id="node2" href="class_branch_controller.html#aefa53a78b681680f0aaef666cfa1dfe1" title="populates the branch model " alt="" coords="239,5,413,47"/>
 </map>
 </div>
 </p>
