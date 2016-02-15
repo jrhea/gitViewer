@@ -11,13 +11,13 @@
 #include <QSurfaceFormat>
 #include<QDebug>
 
-#ifdef QT_WIDGETS_LIB
+#ifndef WIN32
 #include <QtWidgets/QApplication>
 #else
 #include <QtGui/QGuiApplication>
 #endif
 
-#ifdef QT_WIDGETS_LIB
+#ifndef WIN32
 #define QtQuickControlsApplication QApplication
 #else
 #define QtQuickControlsApplication QGuiApplication
