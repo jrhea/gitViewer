@@ -1,0 +1,1 @@
+ffmpeg -i gitViewer.mov -vf "scale=min(iw\,600):-1" -pix_fmt rgb24 -r 10 -f gif gitViewer.gif
