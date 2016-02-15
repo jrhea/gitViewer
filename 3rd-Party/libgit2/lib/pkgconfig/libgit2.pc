@@ -1,0 +1,12 @@
+libdir=c:/Program Files (x86)/libgit2/lib
+includedir=c:/Program Files (x86)/libgit2/include
+
+Name: libgit2
+Description: The git library, take 2
+Version: 0.23.2
+
+Libs: -L${libdir} -lgit2
+Libs.private: 
+Requires.private:  zlib
+
+Cflags: -I${includedir}
