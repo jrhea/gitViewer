@@ -43,6 +43,13 @@ HEADERS += \
 
 
 win32: LIBS += -L$$PWD/3rd-Party/libgit2/lib/ -llibgit2.dll
-INCLUDEPATH += $$PWD/3rd-Party/libgit2/include
-DEPENDPATH += $$PWD/3rd-Party/libgit2/include
+else:unix: LIBS += -L$$PWD/3rd-Party/libGitWrap/build/libGitWrap/ -lGitWrap.0.0.20
+
+win32:INCLUDEPATH += $$PWD/3rd-Party/libgit2/include
+else:unix:INCLUDEPATH += $$PWD/3rd-Party/libGitWrap/build/libGitWrap
+
+win32:DEPENDPATH += $$PWD/3rd-Party/libgit2/include
+else:unix:DEPENDPATH += $$PWD/3rd-Party/libGitWrap/build/libGitWrap
+
+
 
