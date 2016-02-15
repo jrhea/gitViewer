@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_branch_model.html" title="The BranchModel class. " alt="" coords="199,5,298,32"/>
-<area shape="rect" id="node3" href="$class_commit_model.html" title="The CommitModel class. " alt="" coords="197,56,300,83"/>
+<area shape="rect" id="node2" href="$class_branch_model.html" title="The BranchModel class contains the branches for the current repository. " alt="" coords="199,5,298,32"/>
+<area shape="rect" id="node3" href="$class_commit_model.html" title="The CommitModel class contains the commits for the currently selected branch. " alt="" coords="197,56,300,83"/>
 </map>

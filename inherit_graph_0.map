@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_branch_controller.html" title="The BranchController class. " alt="" coords="126,5,245,32"/>
-<area shape="rect" id="node3" href="$class_commit_controller.html" title="The CommitController class. " alt="" coords="124,56,247,83"/>
-<area shape="rect" id="node4" href="$class_git_adapter.html" title="The GitAdapter class. " alt="" coords="143,107,227,133"/>
-<area shape="rect" id="node5" href="$class_git_viewer.html" title="The GitViewer class Initializes controllers, models, adapters, and QML engine. Signal/Slot Management..." alt="" coords="146,157,225,184"/>
+<area shape="rect" id="node2" href="$class_branch_controller.html" title="The BranchController class is the BranchModel&#39;s controller class. " alt="" coords="126,5,245,32"/>
+<area shape="rect" id="node3" href="$class_commit_controller.html" title="The CommitController class is the CommitModel&#39;s controller class. " alt="" coords="124,56,247,83"/>
+<area shape="rect" id="node4" href="$class_git_adapter.html" title="The GitAdapter class is the data adapter that handles communication with git repositories. " alt="" coords="143,107,227,133"/>
+<area shape="rect" id="node5" href="$class_git_viewer.html" title="The GitViewer class initializes controllers, models, adapters, and QML engine. " alt="" coords="146,157,225,184"/>
 </map>
