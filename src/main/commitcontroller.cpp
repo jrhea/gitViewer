@@ -24,6 +24,7 @@ CommitController::~CommitController()
 {
     delete _commitModel;
     delete _modelSurrogate;
+    delete _watcher;
 }
 
 CommitModel *CommitController::getCommitModel() const

@@ -92,8 +92,8 @@ ApplicationWindow {
 
         Component.onCompleted:
         {
-            fileSystem.directorySelected.connect(branchViewToolBar.refresh)
-            fileSystem.directorySelected.connect(commitView.refresh)
+            branchController.modelChanged.connect(branchViewToolBar.refresh)
+            branchController.modelChanged.connect(commitView.refresh)
         }
     }
 }

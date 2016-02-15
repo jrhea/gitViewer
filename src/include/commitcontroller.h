@@ -8,6 +8,7 @@
 #include <qtconcurrentrun.h>
 
 #include "commitmodel.h"
+#include <gitadapter.h>
 
 /**
  * @brief The CommitController class is the CommitModel's controller class
@@ -75,7 +76,7 @@ public slots:
 
     /**
      * @brief populates model with commits from branch
-     * @note wmits signal modelChanged()
+     * @note emits signal modelChanged()
      * @sa modelChanged()
      */
     void populateModel();
@@ -98,8 +99,8 @@ private:
     QFutureWatcher<void> *_watcher;
     QQmlApplicationEngine *_engine;
     GitAdapter *_adapter;
-    CommitModel *_commitModel = NULL;
-    QList<QStringList*> *_modelSurrogate = NULL;
+    CommitModel *_commitModel;
+    QList<QStringList*> *_modelSurrogate;
 
 };
 #endif // COMMITCONTROLLER_H

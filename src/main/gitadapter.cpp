@@ -72,7 +72,9 @@ QStringList GitAdapter::getBranchNames(bool local, bool remote)
         {
             result = QStringList();
         }
+        git_branch_iterator_free(iter);
     }
+    //Sleep::msleep((long)10000);
     return result;
 }
 
@@ -118,34 +120,26 @@ void GitAdapter::getCommits(QList<QStringList*> *modelSurrogate, const QString &
 
             message = git_commit_message(commit);
             for (msg_len=0;message[msg_len] && message[msg_len] != '\n';msg_len++){}
-            //it->setData(CSTR2QSTR(message,msg_len), roles[0]);
             row->append(CSTR2QSTR(message,msg_len));
 
             committer = git_commit_committer(commit);
-            //it->setData(committer->name, roles[1]);
             row->append(committer->name);
-            //it->setData(committer->email, roles[2]);
             row->append(committer->email);
 
             QDateTime commitTime = QDateTime::fromTime_t(committer->when.time);
             commitTime.setUtcOffset(committer->when.offset * 60);
-            //it->setData(commitTime.toString("MM-dd-yyyy hh:mm ap"), roles[3]);
             row->append(commitTime.toString("MM-dd-yyyy hh:mm ap"));
 
             QByteArray id(GIT_OID_HEXSZ+1, 0);
             git_oid_tostr(id.data(), GIT_OID_HEXSZ+1, &oid);
-            //it->setData(CSTR2QSTR(id.data()), roles[4]);
             row->append(CSTR2QSTR(id.data()));
 
-            //it->setData(CSTR2QSTR(message), roles[5]);
             row->append(CSTR2QSTR(message));
-
-            //model->appendRow(it);
             modelSurrogate->append(row);
 
             git_commit_free(commit);
         }
-
+        git_reference_free(ref);
         git_revwalk_free(walker);
     }
     //Sleep::msleep((long)10000);

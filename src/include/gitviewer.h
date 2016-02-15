@@ -20,12 +20,13 @@
  * @brief The GitViewer class initializes controllers, models, adapters, and QML engine.
  *
  * Signal/Slot Management:
- * - FileSystemModel::pathChanged()    -> GitAdapter::openRepository()
- * - GitAdapter::repositoryChanged()   -> BranchController::loadModel()
- * - BranchController::branchChanged() -> CommitController::loadCommits()
- * - CommitController::commitsLoaded() -> CommitController::populateModel()
- * - BranchController::modelChanged()  -> BranchController::updateView()
- * - CommitController::modelChanged()  -> CommitController::updateView()
+ * - FileSystemModel::pathChanged()     ->  GitAdapter::openRepository()
+ * - GitAdapter::repositoryChanged()    ->  BranchController::loadModel()
+ * - BranchController::branchesLoaded() ->  BranchController::populateModel()
+ * - BranchController::branchChanged()  ->  CommitController::loadCommits()
+ * - CommitController::commitsLoaded()  ->  CommitController::populateModel()
+ * - BranchController::modelChanged()   ->  BranchController::updateView()
+ * - CommitController::modelChanged()   ->  CommitController::updateView()
  */
 class GitViewer : QObject
 {
@@ -74,7 +75,10 @@ public:
                 _adapter,SLOT(openRepository(const QString &)));
 
         connect(_adapter,SIGNAL(repositoryChanged()),
-                _branchController,SLOT(loadModel()));
+                _branchController,SLOT(loadBranches()));
+
+        connect(_branchController,SIGNAL(branchesLoaded()),
+                _branchController,SLOT(populateModel()));
 
         connect(_branchController,SIGNAL(branchChanged(const QString &)),
                 _commitController,SLOT(loadCommits(const QString &)));

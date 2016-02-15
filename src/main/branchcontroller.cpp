@@ -3,6 +3,8 @@
 
 #include "branchcontroller.h"
 
+using namespace QtConcurrent;
+
 BranchController::BranchController(QObject *parent) : QObject(parent)
 {
 
@@ -10,13 +12,16 @@ BranchController::BranchController(QObject *parent) : QObject(parent)
 
 BranchController::BranchController(QQmlApplicationEngine *engine, GitAdapter *adapter, QObject *parent) : QObject(parent)
 {
+    _watcher  = new QFutureWatcher<QStringList>();
     _engine = engine;
     _adapter = adapter;
     _branchModel = new BranchModel();
+    updateView();
 }
 
 BranchController::~BranchController()
 {
+    delete _watcher;
     delete _branchModel;
 }
 
@@ -43,14 +48,22 @@ void BranchController::resetModel()
 {
     _branchModel->clear();
     _branch = QString();
-    emit this->modelChanged();
 }
 
-void BranchController::loadModel()
+void BranchController::loadBranches()
 {
-    this->resetModel();
+    QFuture<QStringList> gitter;
+    connect(_watcher,SIGNAL(finished()),this,SIGNAL(branchesLoaded()),Qt::UniqueConnection);
+    gitter = QtConcurrent::run(this->_adapter,&GitAdapter::getBranchNames,true,false);
+    _watcher->setFuture(gitter);
+}
+
+
+void BranchController::populateModel()
+{
+    resetModel();
     QString currentBranchName = _adapter->getCurrentBranchName();
-    QStringList branchNames = _adapter->getBranchNames();
+    QStringList branchNames = _watcher->future().result();
     QStandardItem *item = new QStandardItem();
 
     item->setData(currentBranchName,BranchModel::Name);

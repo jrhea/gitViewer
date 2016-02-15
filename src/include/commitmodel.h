@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QStandardItemModel>
 
-#include <gitadapter.h>
 /**
  * @brief The CommitModel class contains the commits for the currently selected branch
  */

@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QStandardItemModel>
 
-#include <gitadapter.h>
 /**
  * @brief The BranchModel class contains the branches for the current repository.
  */
@@ -33,7 +32,6 @@ public:
      * @return QList<int>
      */
     QList<int> roleList() const;
-
 
 };
 

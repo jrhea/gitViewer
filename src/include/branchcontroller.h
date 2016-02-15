@@ -4,8 +4,12 @@
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QUrl>
+#include <QThread>
+#include <QFutureWatcher>
+#include <qtconcurrentrun.h>
 
 #include "branchmodel.h"
+#include "gitadapter.h"
 
 /**
  * @brief The BranchController class is the BranchModel's controller class
@@ -68,37 +72,49 @@ signals:
     void branchChanged(const QString &branch);
 
     /**
+     * @brief triggered when data adapter has new data to be loaded into the model
+     * @note emitted by loadBranches()
+     * @sa loadBranches()
+     */
+    void branchesLoaded();
+
+    /**
      * @brief triggered when the model changes
-     * @note emitted by resetModel() and loadModel()
-     * @sa resetModel(),loadModel()
+     * @note emitted by resetModel() and populateModal()
+     * @sa resetModel(),populateModal()
      */
     void modelChanged();
 
 public slots:
     /**
      * @brief restores the model to the initial state
-     * @note emits modelChanged() signal
-     * @sa modelChanged()
      */
     void resetModel();
 
     /**
+     * @brief load branches
+     * @note emits signal branchesLoaded()
+     * @sa branchesLoaded()
+     */
+    void loadBranches();
+
+    /**
      * @brief populates the branch model
      * @note emits modelChanged() signal
-     * @sa modelChanged
+     * @sa modelChanged()
      */
-    void loadModel();
+    void populateModel();
 
     /**
      * @brief updates the branch view with model
      */
     void updateView();
 
-
 private:
+    QFutureWatcher<QStringList> *_watcher;
     QQmlApplicationEngine *_engine;
     GitAdapter *_adapter;
-    BranchModel *_branchModel = nullptr;
+    BranchModel *_branchModel;
     QString _branch;
 
 };

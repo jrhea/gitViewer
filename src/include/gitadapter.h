@@ -28,7 +28,7 @@ public:
 
     /**
      * @brief returns the name of the current branch
-     * @return
+     * @return QString
      */
     QString getCurrentBranchName();
 
@@ -36,7 +36,7 @@ public:
      * @brief return a list of branch names
      * @param local corresponds to libGit2's GIT_BRANCH_LOCAL
      * @param remote corresponds to libGit2's GIT_BRANCH_REMOTE (not implemented)
-     * @return
+     * @return QStringList
      */
     QStringList getBranchNames(bool local=true, bool remote=false);
 

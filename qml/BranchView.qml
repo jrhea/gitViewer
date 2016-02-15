@@ -18,6 +18,7 @@ ToolBar {
        // branchController.branch = branchComboBox.currentText;
     }
 
+
     Label {
         id: label1
         text: qsTr("Current Branch:")
