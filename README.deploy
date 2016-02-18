@@ -1,0 +1,5 @@
+OSX
+#package dependencies and exe into dmg
+macdeployqt gitViewer.app -dmg
+#view dependencies
+otool -L gitViewer.app/Contents/MacOS/gitViewer
